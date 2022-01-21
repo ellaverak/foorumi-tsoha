@@ -24,4 +24,5 @@ Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkinto
 
 Current state:
 
-Base of the app has been created. 
+Base of the app has been created.
+The base works in heroku.
