@@ -2,7 +2,7 @@
 
 Tkt-tsoha project
 
-Teen keskustelufoorumin, joka vastaa ominaisuuksiltaan esimerkkiä keskustelusovelluksesta. Foorumin ominaisuudet ovat siis:
+Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
 -Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
 
