@@ -2,6 +2,8 @@
 
 Tkt-tsoha project
 
+Continuation of Keskustelufoorumi-tsoha.
+
 Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
 -Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
