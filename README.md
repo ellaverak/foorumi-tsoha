@@ -21,3 +21,7 @@ Teen keskustelufoorumin, joka vastaa ominaisuuksiltaan esimerkkiä keskustelusov
 -Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkintojen/kiitosten" jakaminen muille käyttäjille. Yksityisviestien lähettäminen.
+
+Current state:
+
+Base of the add has been created. 
