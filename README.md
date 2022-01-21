@@ -24,4 +24,4 @@ Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkinto
 
 Current state:
 
-Base of the add has been created. 
+Base of the app has been created. 
