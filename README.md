@@ -27,4 +27,5 @@ Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkinto
 Current state:
 
 Base of the app has been created.
-The base works in heroku.
+The base works in heroku at:
+https://foorumi-tsoha22.herokuapp.com/
