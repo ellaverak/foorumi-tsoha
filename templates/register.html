@@ -3,11 +3,11 @@
 Rekisteröinti
 <p>
 <form action="/register" method="POST">
-Uusi käyttäjätunnus: <br><input type="text" name="username" minlength="4" maxlength="20">
+Uusi käyttäjätunnus: <br><input type="text" name="username" minlength="1" maxlength="20">
 <p>
-Salasana: <br><input type="password" name="password1">
+Salasana: <br><input type="password" name="password1" minlength="4">
 <p>
-Salasana uudestaan: <br><input type="password" name="password2">
+Salasana uudestaan: <br><input type="password" name="password2" minlength="4">
 <p>
 <input type="submit" value="Luo tunnus">
 </form>

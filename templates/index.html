@@ -4,11 +4,15 @@ Keskustelufoorumi
 <p>
 Tervetuloa keskustelufoorumille!
 <p>
-Kirjaudu sisään
+<form action="/login" method="POST">
+Käyttäjätunnus: <input type="text" name="username" size="20">
 <p>
-Käyttäjätunnus: <input type="text name="name" size="20">
+Salasana: <input type="password" name="password" size="20">
 <p>
-Salasana: <input type="text" name="password" size="20">
+<input type="submit" value="Kirjaudu sisään">
+</form>
+<p>
+<a href="/logout">Kirjaudu ulos</a>
 <p>
 <a href="/register">Rekisteröidy</a>
 <p>
