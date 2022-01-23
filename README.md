@@ -9,7 +9,7 @@ Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
 ✸ Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
 
-✸ Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi    lähetetyn viestin ajankohdan.
+✸ Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi   lähetetyn viestin ajankohdan.
 
 ✸ Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
 
