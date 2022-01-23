@@ -1,10 +1,12 @@
 from app import app
 from flask import render_template, request, redirect
 import users
+import topics
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    list = topics.get_topics()
+    return render_template("index.html", topics=list)
     
 @app.route("/register", methods=["POST", "GET"])
 def register():
