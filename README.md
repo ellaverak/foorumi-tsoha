@@ -33,4 +33,4 @@ Base of the app has been created.
 
 Registering is now possible.
 
-First verion of login/logout complited.
+First version of login/logout complited.
