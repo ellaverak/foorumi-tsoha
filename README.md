@@ -32,3 +32,5 @@ Current state:
 Base of the app has been created.
 
 Registering is now possible.
+
+First verion of login/logout complited.
