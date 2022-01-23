@@ -26,6 +26,7 @@ Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
 Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkintojen/kiitosten" jakaminen muille käyttäjille. Yksityisviestien lähettäminen.
 
+
 Current state:
 
 Base of the app has been created.
