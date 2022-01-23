@@ -1,6 +1,7 @@
 # foorumi-tsoha
 
 Tkt-tsoha project
+heroku address: https://foorumi-tsoha22.herokuapp.com/
 
 Continuation of Keskustelufoorumi-tsoha.
 
@@ -27,5 +28,4 @@ Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkinto
 Current state:
 
 Base of the app has been created.
-The base works in heroku at:
-https://foorumi-tsoha22.herokuapp.com/
+Registering is now possible.
