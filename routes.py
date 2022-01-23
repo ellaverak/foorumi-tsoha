@@ -21,3 +21,18 @@ def register():
             return redirect("/")
     	else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if users.login(username, password):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Väärä tunnus tai salasana")
+
+@app.route("/logout")
+def logout():
+    users.logout()
+    return redirect("/")
