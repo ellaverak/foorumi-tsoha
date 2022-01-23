@@ -15,7 +15,8 @@ Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
 ✸ Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
 
-✸ Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. Käyttäjä voi myös poistaa ketjun    tai viestin. 
+✸ Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. 
+  Käyttäjä voi myös poistaa ketjun tai viestin. 
 
 ✸ Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana. 
 
