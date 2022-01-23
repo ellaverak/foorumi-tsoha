@@ -11,7 +11,7 @@ CREATE TABLE topics (
 
 CREATE TABLE threads (
     id SERIAL PRIMARY KEY,
-    op.content TEXT,
+    op_content TEXT,
     topic_id INTEGER REFERENCES topics,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
