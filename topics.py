@@ -1,3 +1,4 @@
+import os
 from db import db
 
 def get_topics():
@@ -8,5 +9,4 @@ def get_topics():
 def show_topic(id):
     sql = "SELECT name FROM topics WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
-    topic = result.fetchone()[0]
-    return topic
+    return result.fetchone()[0]
