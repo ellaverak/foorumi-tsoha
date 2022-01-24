@@ -38,9 +38,9 @@ def login():
 def logout():
     users.logout()
     return redirect("/")
-    
-@app.route("/topics/<int:id>")
-def topics(id):
+
+@app.route("/topics<int:id>")
+def show(id):
     topic = topics.show_topic(id)
     return render_template("topic.html", topic=topic)
     
