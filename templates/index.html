@@ -19,5 +19,5 @@ Salasana: <input type="password" name="password" size="20">
 Alueet
 <p>
 {% for topic in topics %}
-{{ topic.name }} <br>
+<a href="/topics{{ topic.id }}">{{ topic.name }}</a><br>
 {% endfor %}
