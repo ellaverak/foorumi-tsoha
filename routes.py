@@ -14,14 +14,14 @@ def register():
         return render_template("register.html")
         
     if request.method == "POST":
-    	username = request.form["username"]
-    	password1 = request.form["password1"]
-    	password2 = request.form["password2"]
-    	if password1 != password2:
+        username = request.form["username"]
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+        if password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
-    	if users.register(username, password1):
+        if users.register(username, password1):
             return redirect("/")
-    	else:
+        else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
 @app.route("/login", methods=["GET", "POST"])
