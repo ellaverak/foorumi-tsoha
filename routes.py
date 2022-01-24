@@ -5,7 +5,7 @@ import topics
 
 @app.route("/")
 def index():
-    list = topics.get()
+    list = topics.get_topics()
     return render_template("index.html", topics=list)
     
 @app.route("/register", methods=["POST", "GET"])
