@@ -11,6 +11,7 @@ CREATE TABLE topics (
 
 CREATE TABLE threads (
     id SERIAL PRIMARY KEY,
+    title TEXT,
     op_content TEXT,
     topic_id INTEGER REFERENCES topics,
     user_id INTEGER REFERENCES users,
@@ -20,7 +21,7 @@ CREATE TABLE threads (
 CREATE TABLE replys (
     id SERIAL PRIMARY KEY,
     content TEXT,
-    thread_id INTEGER REFERENCES threads,
+    thread_id INTEGER REFERENCES threads ON DELETE CASCADE,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
 );
