@@ -5,7 +5,7 @@ import topics
 
 @app.route("/")
 def index():
-    list = topics.get_topics()
+    list = topics.get()
     return render_template("index.html", topics=list)
     
 @app.route("/register", methods=["POST", "GET"])
@@ -38,3 +38,9 @@ def login():
 def logout():
     users.logout()
     return redirect("/")
+    
+@app.route("/topics/<int:id>")
+def topics(id):
+    topic = topics.show_topic(id)
+    return render_template("topic.html", topic=topic)
+    
