@@ -34,3 +34,5 @@ Base of the app has been created.
 Registering is now possible.
 
 First version of login/logout complited.
+
+You can now see the amount of threads and replys every topic has. (The index still looks rough though.) 
