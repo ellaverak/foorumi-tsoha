@@ -40,7 +40,7 @@ def logout():
     return redirect("/")
 
 @app.route("/topics<int:id>")
-def show(id):
+def show_topic(id):
     topic = topics.show_topic(id)
     return render_template("topic.html", topic=topic)
     
