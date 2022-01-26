@@ -2,7 +2,7 @@ import os
 from db import db
 
 def get_topics():
-    sql = "SELECT id, name FROM topics ORDER BY id DESC"
+    sql = "SELECT id, name FROM topics"
     result = db.session.execute(sql)
     return  result.fetchall()
 
