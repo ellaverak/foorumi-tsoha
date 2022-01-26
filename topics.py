@@ -2,7 +2,7 @@ import os
 from db import db
 
 def get_topics():
-    sql = "SELECT id, name FROM topics"
+    sql = "SELECT T.id, T.name, COUNT(H.*) FROM threads H, topics T WHERE T.id = H.topic_id GROUP BY T.id ORDER BY T.id ASC"
     result = db.session.execute(sql)
     return  result.fetchall()
 
