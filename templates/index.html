@@ -19,16 +19,13 @@ Salasana: <input type="password" name="password" size="20">
 Alueet
 <p>
 {% for topic in topics %}
-<a href="/topics{{ topic[0] }}">{{ topic[1] }}</a> 
-Ketjujen määrä: {{topic[2]}}
+<a href="/topics{{ topic[0] }}">{{ topic[1] }}</a>
 <p>
-{% endfor %}
-{% for amount in amounts %}
-Vastauksien määrä: {{ amount[1] }}
+Ketjujen määrä: {{topic[2]}} 
 <p>
-{% endfor %}
-{% for time in times %}
-Viimeisin vastaus: {{ time[1] }}
+Vastauksien määrä: {{ topic[3] }} 
+<p>
+Viimeisin vastaus: {{ topic[4] }}
 <p>
 {% endfor %}
 

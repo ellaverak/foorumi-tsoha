@@ -1,1 +1,6 @@
-{{ topic }}
+{{ topic[0][0] }}
+<p>
+{% for thread in topic %}
+<a href="/thread{{ thread[1] }}">{{ thread[2] }}</a>
+<p>
+{% endfor %}

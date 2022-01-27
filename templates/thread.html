@@ -1,1 +1,11 @@
-x
+{{ thread[0][0] }}
+<p>
+{{ thread[0][1] }}
+<p>
+<p>
+{% for reply in thread %}
+{{reply[5]}} {{reply[6]}}
+<p>
+{{reply[3]}}
+<p>
+{% endfor %}
