@@ -2,14 +2,12 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import topics
-import replys
+import thread
 
 @app.route("/")
 def index():
     topic = list(topics.get_topics())
-    amount = list(replys.get_amount())
-    time = list(replys.get_time())
-    return render_template("index.html", topics=topic, amounts=amount, times=time)
+    return render_template("index.html", topics=topic)
     
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -44,6 +42,11 @@ def logout():
 
 @app.route("/topics<int:id>")
 def show_topic(id):
-    topic = topics.show_topic(id)
-    return render_template("topic.html", topic=topic)
+    top = list(topics.show_topic(id))
+    return render_template("topic.html", topic=top)
+    
+@app.route("/thread<int:id>")
+def show_thread(id):
+    thre = list(thread.show_thread(id))
+    return render_template("thread.html", thread=thre)
     
