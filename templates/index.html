@@ -4,6 +4,12 @@ Keskustelufoorumi
 <p>
 Tervetuloa keskustelufoorumille!
 <p>
+{% if session.user_id %}
+Olet kirjautunut sisään
+<p>
+<a href="/logout">Kirjaudu ulos</a>
+<p>
+{% else %}
 <form action="/login" method="POST">
 Käyttäjätunnus: <input type="text" name="username" size="20">
 <p>
@@ -12,9 +18,8 @@ Salasana: <input type="password" name="password" size="20">
 <input type="submit" value="Kirjaudu sisään">
 </form>
 <p>
-<a href="/logout">Kirjaudu ulos</a>
-<p>
 <a href="/register">Rekisteröidy</a>
+{% endif %}
 <p>
 Alueet
 <p>

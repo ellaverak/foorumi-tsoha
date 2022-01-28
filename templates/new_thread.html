@@ -1,0 +1,12 @@
+{{ topic_id }}
+
+<form action="/create_new" method="POST">
+Otsikko: <input type="text" name="title" size="20">
+<p>
+Alotusviesti: 
+<textarea name="op_content" rows="3" cols="40">
+</textarea>
+<p>
+<input type="submit" value="Lähetä">
+<input type="hidden" name="topic_id" value="{{ topic_id }}">
+</form>

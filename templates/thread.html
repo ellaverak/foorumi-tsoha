@@ -1,5 +1,6 @@
 {{ thread[0][0] }}
 <p>
+{{ thread_id }}
 {{ thread[0][1] }}
 <p>
 <p>
@@ -9,3 +10,13 @@
 {{reply[3]}}
 <p>
 {% endfor %}
+
+<form action="/reply" method="post">
+Viesti: <br>
+<textarea name="content" rows="3" cols="40"></textarea>
+<br>
+</textarea>
+<input type="submit" value="Lähetä">
+<input type="hidden" name="thread_id" value="{{ thread_id }}">
+</form>
+
