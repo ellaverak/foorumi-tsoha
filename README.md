@@ -38,3 +38,5 @@ First version of login/logout complited.
 You can now see the amount of threads and replys every topic has. (The index still looks rough though.)
 
 First actual versions of the main pages are ready. Threads and replys are visible.
+
+Users can now create new threads and reply to existing threads.
