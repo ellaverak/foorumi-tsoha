@@ -1,13 +1,14 @@
 {{ thread[0][0] }}
 <p>
-{{ thread_id }}
+{{ thread[0][2] }}
+<p>
 {{ thread[0][1] }}
 <p>
 <p>
 {% for reply in thread %}
-{{reply[5]}} {{reply[6]}}
+{{reply[6]}} {{reply[7]}}
 <p>
-{{reply[3]}}
+{{reply[4]}}
 <p>
 {% endfor %}
 
