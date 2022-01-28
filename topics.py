@@ -6,6 +6,6 @@ def get_topics():
     return  result.fetchall()
 
 def show_topic(id):
-    sql = "SELECT T.name, H.id, H.title FROM topics T LEFT JOIN threads H  ON T.id = H.topic_id WHERE T.id=:id"
+    sql = "SELECT T.name, H.id, H.title, H.sent_at FROM topics T LEFT JOIN threads H  ON T.id = H.topic_id WHERE T.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
