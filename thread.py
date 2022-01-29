@@ -2,7 +2,7 @@ from db import db
 import users
 
 def show_thread(id):
-    sql = "SELECT H.title, H.op_content, (SELECT U.username FROM users U WHERE U.id = H.user_id), R.id, R.content, R.user_id, (SELECT U.username FROM users U WHERE U.id = R.user_id), R.sent_at FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.id=:id"
+    sql = "SELECT H.title, H.op_content, (SELECT U.username FROM users U WHERE U.id = H.user_id), R.id, R.content, R.user_id, (SELECT U.username FROM users U WHERE U.id = R.user_id), R.sent_at, H.id FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.id=:id"
     result = db.session.execute(sql, {"id":id})
     return  result.fetchall()
 
@@ -15,6 +15,12 @@ def create_thread(title, op_content, topic_id):
     db.session.commit()
     return True
 
+def delete_reply(id):
+     sql = "DELETE FROM replys WHERE id=:id"
+     db.session.execute(sql, {"id":id})
+     db.session.commit()
+     return True
+
 def reply(content, thread_id):
     user_id = users.user_id()
     if user_id == 0:
@@ -24,4 +30,11 @@ def reply(content, thread_id):
     db.session.commit()
     return True
     
- 
+def edit_reply(content, reply_id):
+    user_id = users.user_id()
+    if user_id == 0:
+        return False
+    sql = "UPDATE replys SET content=:content WHERE id=:reply_id"
+    db.session.execute(sql, {"content":content, "reply_id":reply_id})
+    db.session.commit()
+    return True
