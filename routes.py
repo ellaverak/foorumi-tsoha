@@ -70,4 +70,26 @@ def reply():
         return redirect("/thread"+str(thread_id))
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
+        
+@app.route("/delete_reply<int:id>")
+def delete_reply(id):
+    if thread.delete_reply(id):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Viestin poistaminen ei onnistunut")
+        
     
+@app.route("/edit_reply", methods=["POST"])
+def edit_reply():
+    content = request.form["content"]
+    reply_id = request.form["reply_id"]
+    if thread.edit_reply(content, reply_id):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Viestin muokkaus ei onnistunut")
+        
+    
+    
+    
+    
+        
