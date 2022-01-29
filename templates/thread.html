@@ -1,3 +1,14 @@
+<script>
+function edit() {
+  var x = document.getElementById("div");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script> 
+
 {{ thread[0][0] }}
 <p>
 {{ thread[0][2] }}
@@ -10,8 +21,25 @@
 <p>
 {{reply[4]}}
 <p>
-{% endfor %}
+{% if session.user_id == reply[5] %}
 
+<button onclick="edit()">Muokkaa</button>
+
+<a href="/delete_reply{{ reply[3]}}">Poista</a>
+
+<div id="div" style="display: none;">
+ <form action="/edit_reply" method="post">
+ Muokkaa viestiä: <br>
+ <textarea name="content" rows="3" cols="40">{{ reply[4] }}</textarea>
+ <br>
+ </textarea>
+ <input type="submit" value="Hyväksy">
+ <input type="hidden" name="reply_id" value="{{ reply[3] }}">
+ </form>
+</div>
+
+{% endif %}
+{% endfor %}
 <form action="/reply" method="post">
 Viesti: <br>
 <textarea name="content" rows="3" cols="40"></textarea>
@@ -20,4 +48,3 @@ Viesti: <br>
 <input type="submit" value="Lähetä">
 <input type="hidden" name="thread_id" value="{{ thread_id }}">
 </form>
-
