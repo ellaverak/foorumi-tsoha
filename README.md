@@ -40,3 +40,5 @@ You can now see the amount of threads and replys every topic has. (The index sti
 First actual versions of the main pages are ready. Threads and replys are visible.
 
 Users can now create new threads and reply to existing threads.
+
+Users can now edit and delete their replys.
