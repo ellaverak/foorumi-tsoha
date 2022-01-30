@@ -16,8 +16,11 @@ function edit() {
 {{ thread[0][1] }}
 <p>
 <p>
+{% if thread[0][3] == None %}
+Jätä vastaus!
+{% else %}
 {% for reply in thread %}
-{{reply[6]}} {{reply[7]}}
+{{reply[6]}} {{reply[7].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
 {{reply[4]}}
 <p>
@@ -40,6 +43,7 @@ function edit() {
 
 {% endif %}
 {% endfor %}
+{% endif %}
 <form action="/reply" method="post">
 Viesti: <br>
 <textarea name="content" rows="3" cols="40"></textarea>

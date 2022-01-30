@@ -4,8 +4,12 @@
 <p>
 Langat
 <p>
+{% if topic[0][1] == None %}
+Ei lankoja
+{% else %}
 {% for thread in topic %}
 <a href="/thread{{ thread[1] }}">{{ thread[2] }}</a>
-{{ thread[3] }}
+{{ thread[3].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
 {% endfor %}
+{% endif %}
