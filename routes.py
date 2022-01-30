@@ -58,7 +58,7 @@ def create_new_thread():
     op_content = request.form["op_content"]
     topic_id = request.form["topic_id"]
     if thread.create_thread(title, op_content, topic_id):
-        return redirect("/")
+        return redirect("/topics"+str(topic_id))
     else:
         return render_template("error.html", message="Langan luominen ei onnistunut")
     
@@ -83,10 +83,29 @@ def delete_reply(id):
 def edit_reply():
     content = request.form["content"]
     reply_id = request.form["reply_id"]
+    thread_id = request.form["thread_id"]
     if thread.edit_reply(content, reply_id):
-        return redirect("/")
+        return redirect("/thread"+str(thread_id))
     else:
         return render_template("error.html", message="Viestin muokkaus ei onnistunut")
+        
+@app.route("/delete_thread<int:id>")
+def delete_thread(id):
+    if thread.delete_thread(id):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Ketjun poistaminen ei onnistunut")
+
+@app.route("/edit_thread", methods=["POST"])
+def edit_thread():
+    title = request.form["title"]
+    op_content = request.form["op_content"]
+    thread_id = request.form["thread_id"]
+    if thread.edit_thread(title, op_content, thread_id):
+        return redirect("/thread"+str(thread_id))
+    else:
+        return render_template("error.html", message="Ketjun muokkaus ei onnistunut")
+    
         
     
     
