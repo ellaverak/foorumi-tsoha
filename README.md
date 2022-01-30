@@ -42,3 +42,5 @@ First actual versions of the main pages are ready. Threads and replys are visibl
 Users can now create new threads and reply to existing threads.
 
 Users can now edit and delete their replys.
+
+Fixed dates, so that they appear in proper format.
