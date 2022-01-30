@@ -1,6 +1,15 @@
 <script>
-function edit() {
-  var x = document.getElementById("div");
+function edit2() {
+  var x = document.getElementById("div2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function edit1() {
+  var x = document.getElementById("div1");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -9,12 +18,31 @@ function edit() {
 }
 </script> 
 
+
 {{ thread[0][0] }}
 <p>
 {{ thread[0][2] }}
 <p>
 {{ thread[0][1] }}
 <p>
+{% if session.user_id == thread[0][9] %}
+
+<button onclick="edit1()">Muokkaa ketjua</button>
+
+<a href="/delete_thread{{ thread[0][8]}}">Poista ketju</a>
+
+<div id="div1" style="display: none;">
+ <form action="/edit_thread" method="POST">
+ Otsikko: <input type="text" name="title" value="{{ thread[0][0] }}" size="20">
+ <p>
+ Aloitusviesti: 
+ <textarea name="op_content" rows="3" cols="40">{{ thread[0][1] }}</textarea>
+ <p>
+ <input type="submit" value="Hyväksy">
+ <input type="hidden" name="thread_id" value="{{ thread[0][8] }}">
+ </form>
+</div>
+{% endif %}
 <p>
 {% if thread[0][3] == None %}
 Jätä vastaus!
@@ -26,11 +54,11 @@ Jätä vastaus!
 <p>
 {% if session.user_id == reply[5] %}
 
-<button onclick="edit()">Muokkaa</button>
+<button onclick="edit2()">Muokkaa</button>
 
 <a href="/delete_reply{{ reply[3]}}">Poista</a>
 
-<div id="div" style="display: none;">
+<div id="div2" style="display: none;">
  <form action="/edit_reply" method="post">
  Muokkaa viestiä: <br>
  <textarea name="content" rows="3" cols="40">{{ reply[4] }}</textarea>
@@ -38,6 +66,7 @@ Jätä vastaus!
  </textarea>
  <input type="submit" value="Hyväksy">
  <input type="hidden" name="reply_id" value="{{ reply[3] }}">
+ <input type="hidden" name="thread_id" value="{{ thread[0][8] }}">
  </form>
 </div>
 
