@@ -46,3 +46,5 @@ Users can now edit and delete their replys.
 Fixed dates, so that they appear in proper format.
 
 Users can now edit the title and content of the threads that they have created. And delete them.
+
+I have to figure out how to make redirecting work when deleting threads or replys!
