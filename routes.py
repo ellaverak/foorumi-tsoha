@@ -106,8 +106,25 @@ def edit_thread():
     else:
         return render_template("error.html", message="Ketjun muokkaus ei onnistunut")
     
-        
+@app.route("/topic_options")
+def topic_options():
+    return render_template("topic_options.html")
     
+@app.route("/delete_topic", methods=["POST"])   
+def delete_topic():
+    topic_name = request.form["topic_name"]
+    if topics.delete_topic(topic_name):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Alueen poisto ei onnistunut")
+    
+@app.route("/create_topic", methods=["POST"])
+def create_topic():
+    topic_name = request.form["topic_name"]
+    if topics.create_topic(topic_name):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Alueen luonti ei onnistunut")        
     
     
     
