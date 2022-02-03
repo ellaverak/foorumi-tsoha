@@ -9,3 +9,15 @@ def show_topic(id):
     sql = "SELECT T.name, H.id, H.title, H.sent_at, H.user_id FROM topics T LEFT JOIN threads H  ON T.id = H.topic_id WHERE T.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
+    
+def delete_topic(name):
+    sql = "DELETE FROM topics WHERE name=:name"
+    db.session.execute(sql, {"name":name})
+    db.session.commit()
+    return True
+
+def create_topic(name):
+    sql = "INSERT INTO topics (name) VALUES (:name)"
+    db.session.execute(sql, {"name":name})
+    db.session.commit()
+    return True
