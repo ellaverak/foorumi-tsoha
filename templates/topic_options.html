@@ -1,0 +1,64 @@
+<script>
+function create1() {
+  var x = document.getElementById("div1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function create2() {
+  var x = document.getElementById("div2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function delete_() {
+  var x = document.getElementById("div3");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script> 
+
+<button onclick="create1()">Luo yleinen alue</button>
+<div id="div1" style="display: none;">
+<form action="/create_topic" method="POST">
+Anna alueelle nimi: <input type="text" name="topic_name" size="20">
+<p>
+<input type="submit" value="Hyväksy">
+</form>
+</div>
+<p>
+
+
+<button onclick="create2()">Luo salainen alue</button>
+<div id="div2" style="display: none;">
+<form action="/create_secret_topic" method="POST">
+Anna alueelle nimi: <input type="text" name="title" size="20">
+<p>
+Valitse käyttäjät, jotka näkevät alueen:
+<p>
+<input type="submit" value="Hyväksy">
+</form>
+</div>
+
+
+<button onclick="delete_()">Poista alue</button>
+<div id="div3" style="display: none;">
+<form action="/delete_topic" method="POST">
+Anna alueen nimi: <input type="text" name="topic_name" size="20">
+<p>
+<input type="submit" value="Hyväksy">
+</form>
+</div>
+<p>
+
+
+<a href="/">Etusivulle</a>

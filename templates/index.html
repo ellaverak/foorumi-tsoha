@@ -38,3 +38,6 @@ Viimeisin vastaus: {{ topic[4].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
 {% endfor %}
 
+{% if session.user_role == 1 %}
+<a href="/topic_options">Alueiden hallinta</a>
+{% endif %}
