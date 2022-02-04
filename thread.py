@@ -53,6 +53,11 @@ def edit_thread(title, op_content, thread_id):
     db.session.execute(sql, {"title":title, "op_content":op_content, "thread_id":thread_id})
     db.session.commit()
     return True
+
+def search(query):
+    sql = "SELECT id, content FROM replys WHERE content LIKE :query"
+    result = db.session.execute(sql, {"query":"%"+query+"%"})
+    return result.fetchall()
      
      
      
