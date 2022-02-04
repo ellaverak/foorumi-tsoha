@@ -108,7 +108,8 @@ def edit_thread():
     
 @app.route("/topic_options")
 def topic_options():
-    return render_template("topic_options.html")
+    user = users.get_users()
+    return render_template("topic_options.html", users=user)
     
 @app.route("/delete_topic", methods=["POST"])   
 def delete_topic():
@@ -125,7 +126,27 @@ def create_topic():
         return redirect("/")
     else:
         return render_template("error.html", message="Alueen luonti ei onnistunut")        
+
+@app.route("/secret_topics")
+def secret_topics():
+    s_topic = list(topics.get_secret_topics())
+    return render_template("secret_topics.html", s_topics=s_topic)
     
+@app.route("/access<int:id>")
+def access(id):
+    if users.access(id):
+        return redirect("/topics"+str(id))
+    else:
+        return render_template("error.html", message="Sinulla ei ole pääsyä alueelle")
+
+@app.route("/create_secret_topic", methods=["POST"])
+def create_secret():
+    topic_name = request.form["topic_name"]
+    choises = request.form["choises"]
+    if topics.create_secret_topic(topic_name, choises):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")  
     
     
         
