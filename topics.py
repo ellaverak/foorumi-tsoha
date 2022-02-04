@@ -35,6 +35,8 @@ def create_secret_topic(name, choises):
     topic_id = db.session.execute(sql, {"name":name}).fetchone()[0]
     user_id = session.get("user_id", 0)
     for line in choises.split("\n"):
+        line = line.replace("\r", "")
+        print(line)
         
         sql = "INSERT INTO secret (topic_id, user_id) VALUES (:topic_id, (SELECT id  FROM users WHERE username=:line))"
         db.session.execute(sql, {"topic_id":topic_id, "line":line})
