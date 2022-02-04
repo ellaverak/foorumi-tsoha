@@ -29,7 +29,9 @@ def create_topic(name):
     return True
 
 def create_secret_topic(name, choises):
-    sql = "INSERT INTO topics (name, secret) VALUES (:name, 1) RETURNING id"
+    sql = "INSERT INTO topics (name, secret) VALUES (:name, 1)"
+    db.session.execute(sql, {"name":name})
+    sql = "SELECT id FROM topics WHERE name=:name"
     topic_id = db.session.execute(sql, {"name":name}).fetchone()[0]
     user_id = session.get("user_id", 0)
     for line in choises.split("\n"):
