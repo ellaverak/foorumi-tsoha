@@ -36,3 +36,20 @@ def user_id():
     
 def require_role(role):
     return session.get("user_role", 0)
+    
+def get_users():
+    sql = "SELECT id, username FROM users ORDER BY username ASC"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
+def access(topic_id):
+    sql = "SELECT user_id FROM secret WHERE topic_id=:topic_id"
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    users = list(result.fetchall())
+    print(users)
+    user_id = session.get("user_id",0)
+    for user in users:
+        print(user)
+        if user_id in user:
+    	    return True
+    return False
