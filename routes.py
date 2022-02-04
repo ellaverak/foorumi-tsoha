@@ -117,7 +117,7 @@ def delete_topic():
     if topics.delete_topic(topic_name):
         return redirect("/")
     else:
-        return render_template("error.html", message="Alueen poisto ei onnistunut")
+        return render_template("error.html", message="Alueen poisto ei onnistunut. Syy: Virhe tai perusalueen poistokäsky.")
     
 @app.route("/create_topic", methods=["POST"])
 def create_topic():
@@ -147,6 +147,12 @@ def create_secret():
         return redirect("/")
     else:
         return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")  
-    
+
+@app.route("/result")
+def result():
+    query = request.args["query"]
+    replys = thread.search(query)
+    return render_template("result.html", replys=replys)
+
     
         
