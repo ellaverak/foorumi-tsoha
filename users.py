@@ -42,12 +42,13 @@ def get_users():
     result = db.session.execute(sql)
     return result.fetchall()
 
-def access(topic_id):
-    sql = "SELECT user_id FROM secret WHERE topic_id=:topic_id"
-    result = db.session.execute(sql, {"topic_id":topic_id})
+def access(id):
+    sql = "SELECT user_id FROM secret WHERE topic_id=:id"
+    result = db.session.execute(sql, {"id":id})
     users = list(result.fetchall())
     user_id = session.get("user_id",0)
     for user in users:
-        if user_id in user:
+        if user_id == user[0]:
             return True
+    
     return False
