@@ -17,6 +17,9 @@ def show_topic(id):
     return result.fetchall()
     
 def delete_topic(name):
+    basic_topics = ["Jutustelu", "Syvälliset", "Kaveriseuraa", "Apuja"]
+    if name in basic_topics:
+        return False
     sql = "DELETE FROM topics WHERE name=:name"
     db.session.execute(sql, {"name":name})
     db.session.commit()
@@ -36,7 +39,6 @@ def create_secret_topic(name, choises):
     user_id = session.get("user_id", 0)
     for line in choises.split("\n"):
         line = line.replace("\r", "")
-        print(line)
         
         sql = "INSERT INTO secret (topic_id, user_id) VALUES (:topic_id, (SELECT id  FROM users WHERE username=:line))"
         db.session.execute(sql, {"topic_id":topic_id, "line":line})
