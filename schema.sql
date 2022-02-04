@@ -7,7 +7,8 @@ CREATE TABLE users (
 
 CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT,
+    secret INTEGER
 );
 
 CREATE TABLE threads (
@@ -25,4 +26,10 @@ CREATE TABLE replys (
     thread_id INTEGER REFERENCES threads ON DELETE CASCADE,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     sent_at TIMESTAMP
+);
+
+CREATE TABLE secret (
+    id SERIAL PRIMARY KEY,
+    topic_id INTEGER REFERENCES topics ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE
 );
