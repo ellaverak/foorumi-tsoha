@@ -21,6 +21,12 @@ Salasana: <input type="password" name="password" size="20">
 <a href="/register">Rekisteröidy</a>
 {% endif %}
 <p>
+<form action="/result" method="GET">
+Hae viestiä: <input type="text" name="query">
+<br>
+<input type="submit" value="Hae">
+</form>
+<p>
 Alueet
 <p>
 <a href="/secret_topics">Salaiset alueet</a>
