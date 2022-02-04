@@ -49,5 +49,5 @@ def access(topic_id):
     user_id = session.get("user_id",0)
     for user in users:
         if user_id in user:
-    	    return True
+            return True
     return False
