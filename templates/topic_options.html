@@ -41,12 +41,22 @@ Anna alueelle nimi: <input type="text" name="topic_name" size="20">
 <button onclick="create2()">Luo salainen alue</button>
 <div id="div2" style="display: none;">
 <form action="/create_secret_topic" method="POST">
-Anna alueelle nimi: <input type="text" name="title" size="20">
+Anna alueelle nimi: <input type="text" name="topic_name" size="20">
 <p>
 Valitse käyttäjät, jotka näkevät alueen:
+<textarea name="choises" rows="5" cols="20" placeholder="käyttäjä_1&#10;käyttäjä_2&#10;käyttäjä_3&#10;jne.">
+</textarea>
 <p>
 <input type="submit" value="Hyväksy">
 </form>
+Lista käyttäjistä:
+<select name="list" multiple="multiple">
+{% for user in users %}
+{% if session.user_id != user[0] %}
+<option value="{{ user[0] }}">{{ user[1] }}</option>
+{% endif %}
+{% endfor %}
+</select>
 </div>
 
 
