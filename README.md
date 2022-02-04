@@ -52,3 +52,5 @@ I have to figure out how to make redirecting work when deleting threads or reply
 Admins can delete topics and create new public topics.
 
 Admins can create secret topics.
+
+first version of search is working.
