@@ -13,7 +13,7 @@ TEST USER:
 - username: user
 - password: user
 
-When testing the app you can also create a new user. Howerer all users are for testing and will most likely be deleted at some point during the app configuration process. If you cannot log in with your user, please create a new one.
+When testing the app you can also create a new user. Howerer, all users are for testing and will most likely be deleted at some point during the app configuration process. If you cannot log in with your user, please create a new one.
 
 USERS:
 
