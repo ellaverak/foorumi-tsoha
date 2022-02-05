@@ -1,11 +1,16 @@
 Hakutulokset
 <p>
 {% for reply in replys %}
+{% if reply[5] == 0 %}
 {{ reply[1] }}, lähettäjä: {{ reply[4] }}
 <p>
 Alueella: {{ reply[3] }}, Ketjussa: {{ reply[2] }}
 <p> 
-<a href="/thread{{ reply[5] }}">Mene ketjuun</a>
+<a href="/thread{{ reply[6] }}">Mene ketjuun</a>
+<p>
+{% else %}
+Vastauksia ei löytynyt
+{% endif %}
 {% endfor %}
 <p>
 <a href="/">Etusivulle</a>
