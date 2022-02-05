@@ -68,4 +68,4 @@ Current state:
 - Admins can delete topics and create new public topics.
 - Admins can create secret topics.
 - first version of search is working.
-- Search feature is fully working. Replys that are left on thread in a secret topic do not show up in results.
+- Search feature is fully working. Replys that are left on a thread in a secret topic do not show up in results.
