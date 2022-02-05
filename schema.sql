@@ -8,7 +8,8 @@ CREATE TABLE users (
 CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
     name TEXT UNIQUE,
-    secret INTEGER
+    secret INTEGER,
+    user_id INTEGER
 );
 
 CREATE TABLE threads (
