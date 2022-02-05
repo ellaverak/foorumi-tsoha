@@ -6,12 +6,12 @@ heroku address: https://foorumi-tsoha22.herokuapp.com/
 !TESTING INSTRUCTIONS!
 
 TEST ADMIN:
-username: admin
-password: admin
+- username: admin
+- password: admin
 
 TEST USER:
-username: user
-password: user
+- username: user
+- password: user
 
 When testing the app you can also create a new user. Howerer all users are for testing and will most likely be deleted at some point during the app configuration process. If you cannot log in with your user, please create a new one.
 
@@ -40,22 +40,22 @@ Continuation of Keskustelufoorumi-tsoha.
 
 Teen keskustelufoorumin, jonka ominaisuudet ovat:
 
-✸ Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
+- Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
 
-✸ Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi   lähetetyn viestin ajankohdan.
+- Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi   lähetetyn viestin ajankohdan.
 
-✸ Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
+- Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
 
-✸ Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
+- Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
 
-✸ Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. 
+- Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. 
   Käyttäjä voi myös poistaa ketjun tai viestin. 
 
-✸ Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana. 
+- Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana. 
 
-✸ Ylläpitäjä voi lisätä ja poistaa keskustelualueita. 
+- Ylläpitäjä voi lisätä ja poistaa keskustelualueita. 
 
-✸ Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
+- Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 Saatan yrittää lisätä foorumille vielä muita ominaisuuksia, esim: "palkintojen/kiitosten" jakaminen muille käyttäjille. Yksityisviestien lähettäminen.
 
