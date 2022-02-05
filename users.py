@@ -42,6 +42,11 @@ def get_users():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_secret_users(id):
+    sql = "SELECT U.username FROM users U LEFT JOIN secret S ON U.id = S.user_id WHERE S.topic_id=:id ORDER BY U.username ASC"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()
+
 def access(id):
     sql = "SELECT user_id FROM secret WHERE topic_id=:id"
     result = db.session.execute(sql, {"id":id})
@@ -52,3 +57,15 @@ def access(id):
             return True
     
     return False
+    
+def add_secret(id, choises):
+
+    for line in choises.split("\n"):
+        line = line.replace("\r", "")
+        
+        sql = "INSERT INTO secret (topic_id, user_id) VALUES (:id, (SELECT id  FROM users WHERE username=:line))"
+        db.session.execute(sql, {"id":id, "line":line})
+    
+    db.session.commit()
+    return True
+
