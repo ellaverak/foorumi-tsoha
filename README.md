@@ -34,7 +34,8 @@ All admins can do everything that a regular user can.
 In addition admins can:
 - see topic options
 - create a new public topic
-- create a new secret topic
+- create a new secret topic and add users to the topic during creation
+- add new users to a secret topic after the topic has been created
 - delete topics (the base topics cannot be deleted. These are: Jutustelu, Syvälliset, Kaveriseuraa, Apuja)
 
 
