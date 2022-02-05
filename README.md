@@ -3,6 +3,39 @@
 Tkt-tsoha project
 heroku address: https://foorumi-tsoha22.herokuapp.com/
 
+!TESTING INSTRUCTIONS!
+
+TEST ADMIN:
+username: admin
+password: admin
+
+TEST USER:
+username: user
+password: user
+
+When testing the app you can also create a new user. Howerer all users are for testing and will most likely be deleted at some point during the app configuration process. If you cannot log in with your user, please create a new one.
+
+USERS:
+All users can:
+- log in and out
+- access public topics
+- create threads
+- reply to threads
+- delete and edit threads that they have created
+- delete and edit replys that they have send
+- see the titles of secret topics
+- access secret topics that they've been added to
+- search replys
+
+ADMIND:
+All admins can do everything that a regular user can.
+In addition admins can:
+- see topic options
+- create a new public topic
+- create a new secret topic
+- delete topics (the base topics cannot be deleted. These are: Jutustelu, Syvälliset, Kaveriseuraa, Apuja)
+
+
 Continuation of Keskustelufoorumi-tsoha.
 
 Teen keskustelufoorumin, jonka ominaisuudet ovat:
