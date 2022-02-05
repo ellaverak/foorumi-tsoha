@@ -1,3 +1,11 @@
+Hakutulokset
+<p>
 {% for reply in replys %}
-{{ reply }}
+{{ reply[1] }}, lähettäjä: {{ reply[4] }}
+<p>
+Alueella: {{ reply[3] }}, Ketjussa: {{ reply[2] }}
+<p> 
+<a href="/thread{{ reply[5] }}">Mene ketjuun</a>
 {% endfor %}
+<p>
+<a href="/">Etusivulle</a>
