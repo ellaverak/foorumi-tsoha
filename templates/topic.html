@@ -14,4 +14,16 @@ Ei ketjuja
 {% endfor %}
 {% endif %}
 <p>
+{% if topic[0][5] == 1 %}
+Alueen käyttäjät:
+<p>
+<select name="list" multiple="multiple">
+{% for user in users %}
+{% if session.user_id != user[0] %}
+<option value="{{ user[0] }}">{{ user[0] }}</option>
+{% endif %}
+{% endfor %}
+</select>
+{% endif %}
+<p>
 <a href="/">Etusivulle</a>
