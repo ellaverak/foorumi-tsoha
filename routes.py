@@ -41,7 +41,9 @@ def logout():
 @app.route("/topics<int:id>")
 def show_topic(id):
     top = list(topics.show_topic(id))
-    return render_template("topic.html", topic=top, topic_id=id)
+    user = list(users.get_secret_users(id))
+    print(user)
+    return render_template("topic.html", topic=top, topic_id=id, users=user)
     
 @app.route("/thread<int:id>")
 def show_thread(id):
@@ -130,7 +132,8 @@ def create_topic():
 @app.route("/secret_topics")
 def secret_topics():
     s_topic = list(topics.get_secret_topics())
-    return render_template("secret_topics.html", s_topics=s_topic)
+    user = users.get_users()
+    return render_template("secret_topics.html", s_topics=s_topic, users=user)
     
 @app.route("/access<int:id>")
 def access(id):
@@ -153,6 +156,15 @@ def result():
     query = request.args["query"]
     replys = thread.search(query)
     return render_template("result.html", replys=replys)
+
+@app.route("/add_secret_users", methods=["POST"])
+def add_secret():
+    choises = request.form["choises"]
+    topic_id = request.form["topic_id"]
+    if users.add_secret(topic_id, choises):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")
 
     
         
