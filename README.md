@@ -72,4 +72,5 @@ Current state:
 - Search feature is fully working. Replys that are left on a thread in a secret topic do not show up in results.
 - The creator of a secret topic can add new users to the topic after creation.
 - All users who have access to a secret topic are listed on the topic site.
-- FUNCTIONALITIES ARE READY! I may or may not add extra features later. 
+- FUNCTIONALITIES ARE READY! I may or may not add extra features later.
+- Added the initial version of layout.html
