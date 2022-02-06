@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="base.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+  <div class="header">
+	<h1>Palsta</h1>
+  </div>
+{% if session.user_id %}
+Olet kirjautunut sisään
+<p>
+<a href="/logout">Kirjaudu ulos</a>
+<p>
+{% else %}
+<form action="/login" method="POST">
+Käyttäjätunnus: <input type="text" name="username" size="20">
+<p>
+Salasana: <input type="password" name="password" size="20">
+<p>
+<input type="submit" value="Kirjaudu sisään">
+</form>
+<p>
+<a href="/register">Rekisteröidy</a>
+{% endif %}
+<p>
+<form action="/result" method="GET">
+Hae viestiä: <input type="text" name="query">
+<br>
+<input type="submit" value="Hae">
+</form>
+<p>
+<a href="/">Etusivu</a>
+<p>
+</body>
+{% block content %}{% endblock %}

@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<title>Keskustelufoorumi</title>
-Keskustelufoorumi
-<p>
-Tervetuloa keskustelufoorumille!
-<p>
-{% if session.user_id %}
-Olet kirjautunut sisään
-<p>
-<a href="/logout">Kirjaudu ulos</a>
-<p>
-{% else %}
-<form action="/login" method="POST">
-Käyttäjätunnus: <input type="text" name="username" size="20">
-<p>
-Salasana: <input type="password" name="password" size="20">
-<p>
-<input type="submit" value="Kirjaudu sisään">
-</form>
-<p>
-<a href="/register">Rekisteröidy</a>
-{% endif %}
-<p>
-<form action="/result" method="GET">
-Hae viestiä: <input type="text" name="query">
-<br>
-<input type="submit" value="Hae">
-</form>
+{% extends "layout.html" %}
+{% block content %}
 <p>
 Alueet
 <p>
@@ -49,3 +23,4 @@ Viimeisin vastaus: {{ topic[4].strftime("%Y-%m-%d %H:%M:%S") }}
 {% if session.user_role == 1 %}
 <a href="/topic_options">Alueiden hallinta</a>
 {% endif %}
+{% endblock %}

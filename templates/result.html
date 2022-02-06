@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 Hakutulokset
 <p>
 {% for reply in replys %}
@@ -12,5 +14,4 @@ Alueella: {{ reply[3] }}, Ketjussa: {{ reply[2] }}
 Vastauksia ei löytynyt
 {% endif %}
 {% endfor %}
-<p>
-<a href="/">Etusivulle</a>
+{% endblock %}

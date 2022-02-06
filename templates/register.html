@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<p>
+{% extends "layout.html" %}
+{% block content %}
 Rekisteröinti
 <p>
 <form action="/register" method="POST">
@@ -11,5 +11,4 @@ Salasana uudestaan: <br><input type="password" name="password2" minlength="4">
 <p>
 <input type="submit" value="Luo tunnus">
 </form>
-<p>
-<a href="/">Etusivulle</a>
+{% endblock %}

@@ -18,6 +18,8 @@ function edit1() {
 }
 </script> 
 
+{% extends "layout.html" %}
+{% block content %}
 
 {{ thread[0][0] }}
 <p>
@@ -81,5 +83,4 @@ Viesti: <br>
 <input type="submit" value="Lähetä">
 <input type="hidden" name="thread_id" value="{{ thread_id }}">
 </form>
-<p>
-<a href="/">Etusivulle</a>
+{% endblock %}

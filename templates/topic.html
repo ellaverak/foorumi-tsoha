@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 {{ topic[0][0] }}
 <p>
 <a href="/new{{ topic_id }}">Luo uusi ketju</a>
@@ -25,5 +27,4 @@ Alueen käyttäjät:
 {% endfor %}
 </select>
 {% endif %}
-<p>
-<a href="/">Etusivulle</a>
+{% endblock %}
