@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="static/css/base.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
   <div class="header">
 	<h1>Palsta</h1>
+	<a href="/">Etusivu</a>
   </div>
 {% if session.user_id %}
 Olet kirjautunut sisään
@@ -29,7 +30,5 @@ Hae viestiä: <input type="text" name="query">
 <input type="submit" value="Hae">
 </form>
 <p>
-<a href="/">Etusivu</a>
-<p>
-</body>
 {% block content %}{% endblock %}
+</body>
