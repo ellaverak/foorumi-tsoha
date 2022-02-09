@@ -19,6 +19,9 @@ function edit1() {
 </script> 
 
 {% extends "layout.html" %}
+{% block link %}
+<a href="/back">Peruuta</a>
+{% endblock %}
 {% block content %}
 
 {{ thread[0][0] }}
