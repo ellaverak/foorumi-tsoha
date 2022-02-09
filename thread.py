@@ -10,16 +10,16 @@ def create_thread(title, op_content, topic_id):
     user_id = users.user_id()
     if user_id == 0:
         return False
-    sql = "INSERT INTO threads (title, op_content, topic_id, user_id, sent_at) VALUES (:title, :op_content, :topic_id, :user_id, NOW())"
-    db.session.execute(sql, {"title":title, "op_content":op_content, "topic_id":topic_id, "user_id":user_id})
+    sql = "INSERT INTO threads (title, op_content, topic_id, user_id, sent_at) VALUES (:title, :op_content, :topic_id, :user_id, NOW()) RETURNING id"
+    new = db.session.execute(sql, {"title":title, "op_content":op_content, "topic_id":topic_id, "user_id":user_id}).fetchone()[0]
     db.session.commit()
-    return True
+    return True, new
 
 def delete_reply(id):
-     sql = "DELETE FROM replys WHERE id=:id"
-     db.session.execute(sql, {"id":id})
+     sql = "DELETE FROM replys WHERE id=:id RETURNING thread_id"
+     thread_id = db.session.execute(sql, {"id":id}).fetchone()[0]
      db.session.commit()
-     return True
+     return True, thread_id
 
 def reply(content, thread_id):
     user_id = users.user_id()
@@ -40,10 +40,10 @@ def edit_reply(content, reply_id):
     return True
     
 def delete_thread(id):
-    sql = "DELETE FROM threads WHERE id=:id"
-    db.session.execute(sql, {"id":id})
+    sql = "DELETE FROM threads WHERE id=:id RETURNING topic_id"
+    topic_id = db.session.execute(sql, {"id":id}).fetchone()[0]
     db.session.commit()
-    return True
+    return True, topic_id
 
 def edit_thread(title, op_content, thread_id):
     user_id = users.user_id()
