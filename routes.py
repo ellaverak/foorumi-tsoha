@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 import users, topics, thread
 
 @app.route("/")
@@ -42,7 +42,6 @@ def logout():
 def show_topic(id):
     top = list(topics.show_topic(id))
     user = list(users.get_secret_users(id))
-    print(user)
     return render_template("topic.html", topic=top, topic_id=id, users=user)
     
 @app.route("/thread<int:id>")
@@ -59,8 +58,9 @@ def create_new_thread():
     title = request.form["title"]
     op_content = request.form["op_content"]
     topic_id = request.form["topic_id"]
-    if thread.create_thread(title, op_content, topic_id):
-        return redirect("/topics"+str(topic_id))
+    result = thread.create_thread(title, op_content, topic_id)
+    if result[0]:
+        return redirect("/thread"+str(result[1]))
     else:
         return render_template("error.html", message="Langan luominen ei onnistunut")
     
@@ -75,8 +75,9 @@ def reply():
         
 @app.route("/delete_reply<int:id>")
 def delete_reply(id):
-    if thread.delete_reply(id):
-        return redirect("/")
+    result = thread.delete_reply(id)
+    if result[0]:
+        return redirect("/thread"+str(result[1]))
     else:
         return render_template("error.html", message="Viestin poistaminen ei onnistunut")
         
@@ -93,8 +94,9 @@ def edit_reply():
         
 @app.route("/delete_thread<int:id>")
 def delete_thread(id):
-    if thread.delete_thread(id):
-        return redirect("/")
+    result = thread.delete_thread(id)
+    if result[0]:
+        return redirect("/topics"+str(result[1]))
     else:
         return render_template("error.html", message="Ketjun poistaminen ei onnistunut")
 
@@ -124,8 +126,9 @@ def delete_topic():
 @app.route("/create_topic", methods=["POST"])
 def create_topic():
     topic_name = request.form["topic_name"]
-    if topics.create_topic(topic_name):
-        return redirect("/")
+    result = topics.create_topic(topic_name)
+    if result[0]:
+        return redirect("/topics"+str(result[1]))
     else:
         return render_template("error.html", message="Alueen luonti ei onnistunut")        
 
@@ -146,8 +149,9 @@ def access(id):
 def create_secret():
     topic_name = request.form["topic_name"]
     choises = request.form["choises"]
-    if topics.create_secret_topic(topic_name, choises):
-        return redirect("/")
+    result = topics.create_secret_topic(topic_name, choises)
+    if result[0]:
+        return redirect("/topics"+str(result[1]))
     else:
         return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")  
 
@@ -166,5 +170,8 @@ def add_secret():
     else:
         return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")
 
+@app.route("/back")
+def back():
+    return redirect("/")
     
         
