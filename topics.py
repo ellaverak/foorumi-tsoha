@@ -26,25 +26,25 @@ def delete_topic(name):
     return True
 
 def create_topic(name):
-    sql = "INSERT INTO topics (name, secret) VALUES (:name, 0)"
-    db.session.execute(sql, {"name":name})
+    sql = "INSERT INTO topics (name, secret) VALUES (:name, 0) RETURNING id"
+    new = db.session.execute(sql, {"name":name}).fetchone()[0]
     db.session.commit()
-    return True
+    return True, new
 
 def create_secret_topic(name, choises):
     user_id = session.get("user_id", 0)
-    sql = "INSERT INTO topics (name, secret, user_id) VALUES (:name, 1, :user_id)"
-    db.session.execute(sql, {"name":name, "user_id":user_id})
-    sql = "SELECT id FROM topics WHERE name=:name"
-    topic_id = db.session.execute(sql, {"name":name}).fetchone()[0]
+    sql = "INSERT INTO topics (name, secret, user_id) VALUES (:name, 1, :user_id) RETURNING id"
+    new = db.session.execute(sql, {"name":name, "user_id":user_id}).fetchone()[0]
+#    sql = "SELECT id FROM topics WHERE name=:name"
+#    topic_id = db.session.execute(sql, {"name":name}).fetchone()[0]
     for line in choises.split("\n"):
         line = line.replace("\r", "")
         
         sql = "INSERT INTO secret (topic_id, user_id) VALUES (:topic_id, (SELECT id  FROM users WHERE username=:line))"
-        db.session.execute(sql, {"topic_id":topic_id, "line":line})
+        db.session.execute(sql, {"topic_id":new, "line":line})
     
     sql = "INSERT INTO secret (topic_id, user_id) VALUES (:topic_id, :user_id)"
-    db.session.execute(sql, {"topic_id":topic_id, "user_id":user_id})
+    db.session.execute(sql, {"topic_id":new, "user_id":user_id})
     
     db.session.commit()
-    return True
+    return True, new
