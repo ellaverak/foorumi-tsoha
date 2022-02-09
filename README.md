@@ -74,3 +74,4 @@ Current state:
 - All users who have access to a secret topic are listed on the topic site.
 - FUNCTIONALITIES ARE READY! I may or may not add extra features later.
 - Added the initial version of layout.html
+- Fixed a lot of redirecting issues when creating a topic, deleting a topic etc.
