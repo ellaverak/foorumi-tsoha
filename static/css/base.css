@@ -2,7 +2,8 @@ body {
     max-width: 45em;
     font-family: 'Trebuchet MS', sans-serif;
     background: floralwhite;
-    color: maroon;
+    color: brown;
+    margin: 5em
 }
 
 .header {
@@ -12,4 +13,22 @@ body {
     font-size: 2em;
     border-radius: .1em;
     margin-top: .2em;
+    width: 30em;
 }
+
+.login {
+	position: relative;
+    top: -900px;
+    left: 1200px;
+    background: darkseagreen;
+    width: 20em;
+}
+
+.search {
+    background: darkseagreen;
+    position: relative;
+    top: -1000px;
+    left: 500px;
+    width: 25em;
+}
+
