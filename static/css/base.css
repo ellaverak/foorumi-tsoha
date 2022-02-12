@@ -21,9 +21,9 @@ body {
     width: 25em;
     padding: 1em;
     border-radius: .5em;
-    position: relative;
-    bottom: 0em;
-    left: 0em;
+    position: absolute;
+    bottom: 42em;
+    left: 70em;
 }
 
 .search {
@@ -31,10 +31,13 @@ body {
     width: 25em;
     padding: 1em;
     border-radius: .5em;
-    position: relative;
-	bottom: 0em;
-	left: 0em;
+    position: absolute;
+	bottom: 42em;
+	left: 30em;
 }
 
+.pos {
+	margin: 3.5em;
+}
 
 
