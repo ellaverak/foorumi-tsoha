@@ -3,7 +3,7 @@ body {
     font-family: 'Trebuchet MS', sans-serif;
     background: floralwhite;
     color: brown;
-    margin: 5em
+    margin: 3.5em;
 }
 
 .header {
@@ -11,24 +11,32 @@ body {
     font-weight: bold;
     padding: 1em 1em;
     font-size: 2em;
-    border-radius: .1em;
+    border-radius: .5em;
     margin-top: .2em;
     width: 30em;
 }
 
 .login {
-	position: relative;
-    top: -900px;
-    left: 1200px;
     background: darkseagreen;
-    width: 20em;
+    width: 25em;
+    padding: 1em;
+    border-radius: .5em;
+    position: absolute;
+    bottom: 40em;
+    left: 70em;
 }
 
 .search {
     background: darkseagreen;
-    position: relative;
-    top: -1000px;
-    left: 500px;
     width: 25em;
+    padding: 1em;
+    border-radius: .5em;
+    position: absolute;
+	bottom: 43em;
+	left: 30em;
+}
+
+.no-overflow {
+	overflow:hidden;
 }
 
