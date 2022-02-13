@@ -21,7 +21,7 @@ CREATE TABLE threads (
     sent_at TIMESTAMP
 );
 
-CREATE TABLE replys (
+CREATE TABLE replies (
     id SERIAL PRIMARY KEY,
     content TEXT,
     thread_id INTEGER REFERENCES threads ON DELETE CASCADE,
