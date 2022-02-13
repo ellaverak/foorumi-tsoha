@@ -14,30 +14,64 @@ body {
     font-size: 2em;
     border-radius: .5em;
     width: 30em;
+    border-style: solid;
 }
 
 .login {
     background: darkseagreen;
     width: 25em;
-    padding: 1em;
-    border-radius: .5em;
+    padding: 1.3em;
+    border-radius: 1em;
     position: relative;
-    bottom: 3em;
+    bottom: 4em;
     left: 70em;
+    transform: scale(1.1, 1.1);
+    border-style: solid;
+    border-color: sienna;
+    border-right-width: .5em;
+    border-left-width: .5em;
 }
 
 .search {
     background: darkseagreen;
     width: 25em;
     padding: 1em;
-    border-radius: .5em;
+    border-radius: 1em;
     position: relative;
 	top: 5em;
 	left: 30em;
+	transform: scale(1.1, 1.1);
+	border-style: solid;
+	border-color: sienna;
+	border-right-width: .5em;
+    border-left-width: .5em;
+    height: 4em;
 }
 
 #container {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	height: 10px;
+}
+
+nav {
+	font-size: 1.3em;
+	padding: .2em;
+}
+
+#container label {
+	position: relative;
+	left: 10px;
+}
+
+#container input {
+	float: right;
+	position: relative;
+	right: 40px;
+}
+
+#button:hover{
+    background: rgb(138, 119, 94);
+    color: white;
 }
