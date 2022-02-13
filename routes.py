@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-import users, topics, thread
+import users, topics, thread, reply
 
 @app.route("/")
 def index():
@@ -65,17 +65,17 @@ def create_new_thread():
         return render_template("error.html", message="Langan luominen ei onnistunut")
     
 @app.route("/reply", methods=["POST"])
-def reply():
+def reply_to():
     content = request.form["content"]
     thread_id = request.form["thread_id"]
-    if thread.reply(content, thread_id):
+    if reply.leave_reply(content, thread_id):
         return redirect("/thread"+str(thread_id))
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
         
 @app.route("/delete_reply<int:id>")
 def delete_reply(id):
-    result = thread.delete_reply(id)
+    result = reply.delete_reply(id)
     if result[0]:
         return redirect("/thread"+str(result[1]))
     else:
@@ -87,7 +87,7 @@ def edit_reply():
     content = request.form["content"]
     reply_id = request.form["reply_id"]
     thread_id = request.form["thread_id"]
-    if thread.edit_reply(content, reply_id):
+    if reply.edit_reply(content, reply_id):
         return redirect("/thread"+str(thread_id))
     else:
         return render_template("error.html", message="Viestin muokkaus ei onnistunut")
@@ -158,8 +158,8 @@ def create_secret():
 @app.route("/result")
 def result():
     query = request.args["query"]
-    replys = thread.search(query)
-    return render_template("result.html", replys=replys)
+    replies = reply.search(query)
+    return render_template("result.html", replies=replies)
 
 @app.route("/add_secret_users", methods=["POST"])
 def add_secret():
