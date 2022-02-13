@@ -4,6 +4,7 @@ body {
     background: floralwhite;
     color: brown;
     margin: 3.5em;
+    position: absolute;
 }
 
 .header {
@@ -12,7 +13,6 @@ body {
     padding: 1em 1em;
     font-size: 2em;
     border-radius: .5em;
-    margin-top: .2em;
     width: 30em;
 }
 
@@ -21,8 +21,8 @@ body {
     width: 25em;
     padding: 1em;
     border-radius: .5em;
-    position: absolute;
-    bottom: 42em;
+    position: relative;
+    bottom: 3em;
     left: 70em;
 }
 
@@ -31,13 +31,13 @@ body {
     width: 25em;
     padding: 1em;
     border-radius: .5em;
-    position: absolute;
-	bottom: 42em;
+    position: relative;
+	top: 5em;
 	left: 30em;
 }
 
-.pos {
-	margin: 3.5em;
+#container {
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
-
-
