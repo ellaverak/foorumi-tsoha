@@ -28,8 +28,11 @@ function delete_() {
 </script>
 
 {% extends "layout.html" %}
+{% block link %}
+<a href="/back">Peruuta</a>
+{% endblock %}
 {% block content %}
-
+<p>
 <button onclick="create1()">Luo yleinen alue</button>
 <div id="div1" style="display: none;">
 <form action="/create_topic" method="POST">

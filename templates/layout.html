@@ -10,8 +10,8 @@
   </div>
   
   <nav>
-    <a href="/">Etusivu</a>
-	{% block link %}{% endblock %}
+      <a href="/">Etusivu</a>
+	  {% block link %}{% endblock %}
   </nav>
   
   {% block content %}{% endblock %}
@@ -20,9 +20,10 @@
   <div class="search">
     <p>
     <form action="/result" method="GET">
-    Hae viestiä: <input type="text" name="query">
-    <br>
-    <input type="submit" value="Hae">
+    <label for="search">Hae viestiä:</label>
+    <input type="text" name="query">
+    <p>
+    <input id="button" type="submit" value="Hae">
     </form>
     <p>
   </div>
@@ -34,16 +35,17 @@
     <a href="/logout">Kirjaudu ulos</a>
     <p>
     {% else %}
-    <form id="login" action="/login" method="POST">
-    <label fro="username">Käyttäjätunnus:</label>
+    <form action="/login" method="POST">
+    <label for="username">Käyttäjätunnus:</label>
     <input type="text" name="username" size="20">
-    <label fro="password">Salasana:</label>
+    <p>
+    <label for="password">Salasana:</label>
     <input type="password" name="password" size="20">
     <p>
-    <input type="submit" value="Kirjaudu sisään">
+    <input id="button" type="submit" value="Kirjaudu sisään">
     </form>
     <p>
-    <a href="/register">Rekisteröidy</a>
+    <a id ="new_user" href="/register">Rekisteröidy</a>
     {% endif %}
  </div>
  </div>
