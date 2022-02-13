@@ -2,12 +2,12 @@ from db import db
 from flask import session
 
 def get_topics():
-    sql = "SELECT A.id, A.name, (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id), (SELECT COUNT(R.*) FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.topic_id = A.id), (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.topic_id = A.id) FROM topics A WHERE secret=0"
+    sql = "SELECT A.id, A.name, (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id), (SELECT COUNT(R.*) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id), (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id) FROM topics A WHERE secret=0"
     result = db.session.execute(sql)
     return  result.fetchall()
 
 def get_secret_topics():
-    sql = "SELECT A.id, A.name, (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id), (SELECT COUNT(R.*) FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.topic_id = A.id), (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replys R ON H.id = R.thread_id WHERE H.topic_id = A.id), A.user_id FROM topics A WHERE secret=1"
+    sql = "SELECT A.id, A.name, (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id), (SELECT COUNT(R.*) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id), (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id), A.user_id FROM topics A WHERE secret=1"
     result = db.session.execute(sql)
     return  result.fetchall()
 
@@ -35,8 +35,6 @@ def create_secret_topic(name, choises):
     user_id = session.get("user_id", 0)
     sql = "INSERT INTO topics (name, secret, user_id) VALUES (:name, 1, :user_id) RETURNING id"
     new = db.session.execute(sql, {"name":name, "user_id":user_id}).fetchone()[0]
-#    sql = "SELECT id FROM topics WHERE name=:name"
-#    topic_id = db.session.execute(sql, {"name":name}).fetchone()[0]
     for line in choises.split("\n"):
         line = line.replace("\r", "")
         
