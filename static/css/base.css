@@ -1,24 +1,29 @@
 body {
     max-width: 45em;
     font-family: 'Trebuchet MS', sans-serif;
-    background: floralwhite;
-    color: brown;
+    background: black;
+    color: lavenderblush;
     margin: 3.5em;
     position: absolute;
 }
 
 .header {
-    background: palevioletred;
+    background: black;
     font-weight: bold;
     padding: 1em 1em;
     font-size: 2em;
     border-radius: .5em;
     width: 30em;
-    border-style: solid;
+    border-style: outset;
+    border-right-width: .3em;
+    border-left-width: .3em;
+    border-bottom-width: .2em;
+    border-top-width: .2em;
+    border-color: palevioletred;
 }
 
 .login {
-    background: darkseagreen;
+    background: black;
     width: 25em;
     padding: 1.3em;
     border-radius: 1em;
@@ -26,14 +31,14 @@ body {
     bottom: 4em;
     left: 70em;
     transform: scale(1.1, 1.1);
-    border-style: solid;
-    border-color: sienna;
-    border-right-width: .5em;
-    border-left-width: .5em;
+    border-style: double;
+    border-color: lightpink;
+    border-top-width: .5em;
+    border-bottom-width: .5em;
 }
 
 .search {
-    background: darkseagreen;
+    background: black;
     width: 25em;
     padding: 1em;
     border-radius: 1em;
@@ -41,8 +46,8 @@ body {
 	top: 5em;
 	left: 30em;
 	transform: scale(1.1, 1.1);
-	border-style: solid;
-	border-color: sienna;
+	border-style: double;
+	border-color: thistle;
 	border-right-width: .5em;
     border-left-width: .5em;
     height: 4em;
@@ -56,8 +61,8 @@ body {
 }
 
 nav {
-	font-size: 1.3em;
-	padding: .2em;
+	font-size: 1.4em;
+	padding: .5em;
 }
 
 #container label {
@@ -74,4 +79,16 @@ nav {
 #button:hover{
     background: rgb(138, 119, 94);
     color: white;
+}
+
+a:link {
+	color: mediumvioletred;
+}
+
+a:visited {
+	color: mediumvioletred;
+}
+
+a:hover {
+	color: plum;
 }
