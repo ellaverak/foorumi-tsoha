@@ -38,14 +38,14 @@ def require_role(role):
     return session.get("user_role", 0)
     
 def get_users():
-    sql = "SELECT id, username FROM users ORDER BY username ASC"
+    sql = "SELECT id, username FROM users ORDER BY username"
     result = db.session.execute(sql)
     return result.fetchall()
 
 def get_secret_users(id):
-    sql = "SELECT U.username FROM users U LEFT JOIN secret S ON U.id = S.user_id WHERE S.topic_id=:id ORDER BY U.username ASC"
+    sql = "SELECT U.username FROM users U LEFT JOIN secret S ON U.id = S.user_id WHERE S.topic_id=:id ORDER BY U.username"
     result = db.session.execute(sql, {"id":id})
-    return result.fetchall()
+    return list(result.fetchall())
 
 def access(id):
     sql = "SELECT user_id FROM secret WHERE topic_id=:id"
@@ -59,13 +59,22 @@ def access(id):
     return False
     
 def add_secret(id, choises):
-
-    for line in choises.split("\n"):
-        line = line.replace("\r", "")
+    users = list(get_users())
+    for i in range(0,len(users)):
+        users[i] = users[i][1]
+    print(users)
+    try:
+        for line in choises.split("\n"):
+            line = line.replace("\r", "")
+            if line not in users:
+                return False
         
-        sql = "INSERT INTO secret (topic_id, user_id) VALUES (:id, (SELECT id  FROM users WHERE username=:line))"
-        db.session.execute(sql, {"id":id, "line":line})
+            sql = "INSERT INTO secret (topic_id, user_id) VALUES (:id, (SELECT id  FROM users WHERE username=:line))"
+            db.session.execute(sql, {"id":id, "line":line})
     
-    db.session.commit()
+        db.session.commit()
+    except:
+        return False
+        
     return True
 
