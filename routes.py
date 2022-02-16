@@ -47,11 +47,13 @@ def show_topic(id):
 @app.route("/thread<int:id>")
 def show_thread(id):
     thre = list(thread.show_thread(id))
-    return render_template("thread.html", thread=thre, thread_id=id)
+    topic_info = list(topics.get_info_thread(id))
+    return render_template("thread.html", thread=thre, thread_id=id, topic_info=topic_info)
     
 @app.route("/new<int:id>")
 def new_thread(id):
-    return render_template("new_thread.html", topic_id=id)
+    topic_info = list(topics.get_info_topic(id))
+    return render_template("new_thread.html", topic_id=id, topic_info=topic_info)
 
 @app.route("/create_new", methods=["POST"])
 def create_new_thread():
