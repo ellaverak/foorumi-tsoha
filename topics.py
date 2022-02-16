@@ -46,3 +46,17 @@ def create_secret_topic(name, choises):
     
     db.session.commit()
     return True, new
+    
+def get_info_thread(id):
+    sql = "SELECT T.name, T.secret FROM topics T LEFT JOIN threads H ON T.id=H.topic_id WHERE H.id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return  result.fetchall()
+    
+def get_info_topic(id):
+    sql = "SELECT name, secret FROM topics WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return  result.fetchall()
+    
+    
+    
+    
