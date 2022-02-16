@@ -1,4 +1,10 @@
 {% extends "layout.html" %}
+{% block link %}
+{% if topic[0][5] == 1 %}
+/ <a href="topic" onclick="history.go(-1)">Salaiset alueet</a>
+{% endif %}
+/ {{ topic[0][0] }}
+{% endblock %}
 {% block content %}
 <p>
 {{ topic[0][0] }}

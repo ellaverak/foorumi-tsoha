@@ -1,10 +1,14 @@
 {% extends "layout.html" %}
 {% block link %}
-TESTI
+/ Hakutulokset
 {% endblock %}
 {% block content %}
 <p>
 Hakutulokset
+<p>
+{% if replies == [] %}
+Ei tuloksia
+{% endif %}
 <p>
 {% for reply in replies %}
 {% if reply[5] == 0 %}

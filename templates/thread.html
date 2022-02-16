@@ -20,7 +20,11 @@ function edit1() {
 
 {% extends "layout.html" %}
 {% block link %}
-<a href="/back">Peruuta</a>
+{% if topic_info[0][1] == 1 %}
+/ <a href="topic" onclick="history.go(-2)">Salaiset alueet</a>
+{% endif %}
+/ <a href="topic" onclick="history.go(-1)">{{ topic_info[0][0] }}</a>
+/ {{ thread[0][0] }}
 {% endblock %}
 {% block content %}
 <p>

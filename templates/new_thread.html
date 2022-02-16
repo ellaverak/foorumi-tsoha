@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block link %}
-TESTI
+{% if topic_info[0][1] == 1 %}
+/ <a href="topic" onclick="history.go(-2)">Salaiset alueet</a>
+{% endif %}
+/ <a href="topic" onclick="history.go(-1)">{{ topic_info[0][0] }}</a>
+/ Luo uusi ketju
 {% endblock %}
 {% block content %}
 <p>
