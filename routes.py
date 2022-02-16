@@ -4,8 +4,8 @@ import users, topics, thread, reply
 
 @app.route("/")
 def index():
-    topic = list(topics.get_topics())
-    return render_template("index.html", topics=topic)
+    topics_ = topics.get_topics()
+    return render_template("index.html", topics=topics_)
     
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -40,19 +40,19 @@ def logout():
 
 @app.route("/topics<int:id>")
 def show_topic(id):
-    top = list(topics.show_topic(id))
-    user = list(users.get_secret_users(id))
-    return render_template("topic.html", topic=top, topic_id=id, users=user)
+    topic = topics.show_topic(id)
+    users_ = users.get_secret_users(id)
+    return render_template("topic.html", topic=topic, topic_id=id, users=users_)
     
 @app.route("/thread<int:id>")
 def show_thread(id):
-    thre = list(thread.show_thread(id))
-    topic_info = list(topics.get_info_thread(id))
-    return render_template("thread.html", thread=thre, thread_id=id, topic_info=topic_info)
+    thread_ = thread.show_thread(id)
+    topic_info = topics.get_info_thread(id)
+    return render_template("thread.html", thread=thread_, thread_id=id, topic_info=topic_info)
     
 @app.route("/new<int:id>")
 def new_thread(id):
-    topic_info = list(topics.get_info_topic(id))
+    topic_info = topics.get_info_topic(id)
     return render_template("new_thread.html", topic_id=id, topic_info=topic_info)
 
 @app.route("/create_new", methods=["POST"])
@@ -114,8 +114,8 @@ def edit_thread():
     
 @app.route("/topic_options")
 def topic_options():
-    user = users.get_users()
-    return render_template("topic_options.html", users=user)
+    users_ = users.get_users()
+    return render_template("topic_options.html", users=users_)
     
 @app.route("/delete_topic", methods=["POST"])   
 def delete_topic():
@@ -136,9 +136,9 @@ def create_topic():
 
 @app.route("/secret_topics")
 def secret_topics():
-    s_topic = list(topics.get_secret_topics())
-    user = users.get_users()
-    return render_template("secret_topics.html", s_topics=s_topic, users=user)
+    s_topic = topics.get_secret_topics()
+    users_ = users.get_users()
+    return render_template("secret_topics.html", s_topics=s_topic, users=users_)
     
 @app.route("/access<int:id>")
 def access(id):
@@ -168,9 +168,9 @@ def add_secret():
     choises = request.form["choises"]
     topic_id = request.form["topic_id"]
     if users.add_secret(topic_id, choises):
-        return redirect("/")
+        return redirect("/topics"+str(topic_id))
     else:
-        return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")
+        return render_template("error.html", message="Käyttäjien lisääminen ei onnistunut")
 
 @app.route("/back")
 def back():
