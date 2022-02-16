@@ -75,3 +75,4 @@ Current state:
 - FUNCTIONALITIES ARE READY! I may or may not add extra features later.
 - Added the initial version of layout.html
 - Fixed a lot of redirecting issues when creating a topic, deleting a topic etc.
+- Finished navigation elements
