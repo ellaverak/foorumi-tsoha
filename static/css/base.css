@@ -76,8 +76,12 @@ nav {
 	right: 40px;
 }
 
+#container a {
+	position: relative;
+	left: 10px;
+}
 #button:hover{
-    background: rgb(138, 119, 94);
+    background: black;
     color: white;
 }
 
@@ -92,3 +96,5 @@ a:visited {
 a:hover {
 	color: plum;
 }
+
+
