@@ -21,9 +21,12 @@ def edit_reply(content, reply_id):
     return True
 
 def delete_reply(id):
-     sql = "DELETE FROM replies WHERE id=:id RETURNING thread_id"
-     thread_id = db.session.execute(sql, {"id":id}).fetchone()[0]
-     db.session.commit()
+     try:
+         sql = "DELETE FROM replies WHERE id=:id RETURNING thread_id"
+         thread_id = db.session.execute(sql, {"id":id}).fetchone()[0]
+         db.session.commit()
+     except:
+         return False
      return True, thread_id
     
 def search(query):
