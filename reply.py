@@ -30,6 +30,10 @@ def delete_reply(id):
      return True, thread_id
     
 def search(query):
-    sql = "SELECT R.id, R.content, H.title, (SELECT T.name FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), (SELECT U.username FROM users U LEFT JOIN replies D ON U.id = D.user_id WHERE D.id = R.id), (SELECT T.secret FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE R.content LIKE :query"
+    sql = """SELECT R.id, R.content, H.title, 
+             (SELECT T.name FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), 
+             (SELECT U.username FROM users U LEFT JOIN replies D ON U.id = D.user_id WHERE D.id = R.id), 
+             (SELECT T.secret FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), 
+             H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE R.content LIKE :query"""
     result = db.session.execute(sql, {"query":"%"+query+"%"})
     return result.fetchall()
