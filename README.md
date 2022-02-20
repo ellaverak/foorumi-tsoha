@@ -76,3 +76,5 @@ Current state:
 - Added the initial version of layout.html
 - Fixed a lot of redirecting issues when creating a topic, deleting a topic etc.
 - Finished navigation elements
+- overall layout is about finished.
+- frontpage layout is about finished.
