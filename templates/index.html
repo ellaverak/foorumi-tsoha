@@ -1,48 +1,38 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="static/css/index.css">
+<link rel="stylesheet" href="static/css/topic_list.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% extends "layout.html" %}
 {% block content %}
 
-  
 <div class="headline">
-  <p>
-  <a href="/secret_topics">Salaiset alueet</a>
-  <p>
   Alueet
+  <a id="secret" href="/secret_topics">Salaiset alueet</a>
 </div>
   
 <div class="topic">
-  <p>
   {% for topic in topics %}
   <a id="name" href="/topics{{ topic[0] }}">{{ topic[1] }}</a>
   <p>
   <text1>
-  Ketjujen määrä: {{topic[2]}} 
+  Ketjujen määrä: {{topic[2]}} <br>
+  Vastauksien määrä: {{ topic[3] }} 
   </text1>
   <p>
   <text2>
-  Vastauksien määrä: {{ topic[3] }} 
-  </text2>
-  <p>
   {% if topic[4] == None %}
-  <text3>
   Viimeisin vastaus: ei vastauksia
   <hr></hr>
-  </text3>
   {% else %}
-  <text3>
   Viimeisin vastaus: {{ topic[4].strftime("%Y-%m-%d %H:%M:%S") }}
   <hr></hr>
-  </text3>
   {% endif %}
-  <p>
   {% endfor %}
+  </text2>
     
   <p>
   {% if session.user_role == 1 %}
-  <a href="/topic_options">Alueiden hallinta</a>
+  <a id="topic_options" href="/topic_options">Alueiden hallinta</a>
   {% endif %}
   
   {% endblock %}

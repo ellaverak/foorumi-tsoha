@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 {% extends "layout.html" %}
 {% block link %}
 / Virhe
 {% endblock %}
-{% block content %}
-<p>
-Virhe: {{ message }}
-{% endblock %}
+<html>
+  {% block content %}
+  <p>
+  <p style="text-align:center;color:pink;font-size:25px;">Virhe: {{ message }}</p>
+  {% endblock %}
+</html>
