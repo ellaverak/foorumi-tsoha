@@ -1,0 +1,59 @@
+.headline {
+	font-size: 2.1em;
+	line-height: 1.1;
+	padding: 0.5em;
+	position: relative;
+}
+
+#secret {
+    position: relative;
+    left: 18.5em;
+}
+
+.topic {
+	border-style: dashed;
+	border-color: #2B0E2F;
+	width: 60em;
+	padding: 0.7em;
+}
+
+#name {
+    font-size: 1.5em;
+}
+
+#topic_options {
+    font-size: 1.5em;
+}
+
+.topic text1 {
+    font-size: 1.1em;
+    line-height: 2em;
+}
+
+.topic text2 {
+    font-size: 1em;
+	color: #5A0F52;
+	left: 42em;
+	position: relative;
+}
+
+.topic hr {
+    color: #2B0E2F;
+    border: dashed;
+}
+
+.topic hr2 {
+    color: azure;
+    border: dashed;
+}
+
+.topic button:hover{
+    background: black;
+    color: white;
+}
+
+.topic button {
+    font-size: 0.9em;
+    background: mistyrose;
+}
+

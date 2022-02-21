@@ -80,9 +80,14 @@ nav {
 	position: relative;
 	left: 10px;
 }
+
 #button:hover{
     background: black;
     color: white;
+}
+
+#button {
+    background: mistyrose;
 }
 
 a:link {
