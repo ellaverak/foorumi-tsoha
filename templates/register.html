@@ -1,17 +1,25 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="static/css/register.css">
+<meta name="viewport" content="width=device-width, initial-scale=1"
+
 {% extends "layout.html" %}
 {% block link %}
 / Rekisteröidy
 {% endblock %}
 {% block content %}
+<div class="register">
+<text>
 Rekisteröinti
+</text>
 <p>
 <form action="/register" method="POST">
-Uusi käyttäjätunnus: <br><input type="text" name="username" minlength="1" maxlength="20">
+Uusi käyttäjä: <br><input type="text" name="username" minlength="1" maxlength="20">
 <p>
 Salasana: <br><input type="password" name="password1" minlength="4">
 <p>
 Salasana uudestaan: <br><input type="password" name="password2" minlength="4">
 <p>
-<input type="submit" value="Luo tunnus">
+<input id="button" type="submit" value="Luo tunnus">
 </form>
+</div>
 {% endblock %}

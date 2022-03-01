@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="static/css/topic_options.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script>
 function create1() {
   var x = document.getElementById("div1");
@@ -32,47 +36,48 @@ function delete_() {
 / Alueiden hallinta
 {% endblock %}
 {% block content %}
-<p>
-<button onclick="create1()">Luo yleinen alue</button>
-<div id="div1" style="display: none;">
-<form action="/create_topic" method="POST">
-Anna alueelle nimi: <input type="text" name="topic_name" size="20">
-<p>
-<input type="submit" value="Hyväksy">
-</form>
-</div>
-<p>
 
+<div class="options">
+   <p>
+   <button onclick="create1()">Luo yleinen alue</button>
+   <div id="div1" style="display: none;">
+   <form action="/create_topic" method="POST">
+   Anna alueelle nimi: <input type="text" name="topic_name" size="20">
+   <p>
+   <input type="submit" value="Hyväksy">
+   </form>
+   </div>
+   <p>
 
-<button onclick="create2()">Luo salainen alue</button>
-<div id="div2" style="display: none;">
-<form action="/create_secret_topic" method="POST">
-Anna alueelle nimi: <input type="text" name="topic_name" size="20">
-<p>
-Valitse käyttäjät, jotka näkevät alueen:
-<textarea name="choises" rows="5" cols="20" placeholder="käyttäjä_1&#10;käyttäjä_2&#10;käyttäjä_3&#10;jne.">
-</textarea>
-<p>
-<input type="submit" value="Hyväksy">
-</form>
-Lista käyttäjistä:
-<select name="list" multiple="multiple">
-{% for user in users %}
-{% if session.user_id != user[0] %}
-<option value="{{ user[0] }}">{{ user[1] }}</option>
-{% endif %}
-{% endfor %}
-</select>
-</div>
+   <button onclick="create2()">Luo salainen alue</button>
+   <div id="div2" style="display: none;">
+   <form action="/create_secret_topic" method="POST">
+   Anna alueelle nimi: <input type="text" name="topic_name" size="20">
+   <p>
+   Valitse käyttäjät, jotka näkevät alueen:
+   <textarea name="choises" rows="5" cols="20" placeholder="käyttäjä_1&#10;käyttäjä_2&#10;käyttäjä_3&#10;jne.">
+   </textarea>
+   <p>
+   <input type="submit" value="Hyväksy">
+   </form>
+   Lista käyttäjistä:
+   <select name="list" multiple="multiple">
+   {% for user in users %}
+   {% if session.user_id != user[0] %}
+   <option value="{{ user[0] }}">{{ user[1] }}</option>
+   {% endif %}
+   {% endfor %}
+   </select>
+   </div>
 
-
-<button onclick="delete_()">Poista alue</button>
-<div id="div3" style="display: none;">
-<form action="/delete_topic" method="POST">
-Anna alueen nimi: <input type="text" name="topic_name" size="20">
-<p>
-<input type="submit" value="Hyväksy">
-</form>
-</div>
-<p>
-{% endblock %}
+   <button onclick="delete_()">Poista alue</button>
+   <div id="div3" style="display: none;">
+   <form action="/delete_topic" method="POST">
+   Anna alueen nimi: <input type="text" name="topic_name" size="20">
+   <p>
+   <input type="submit" value="Hyväksy">
+   </form>
+   </div>
+   <p>
+   </div>
+ {% endblock %}
