@@ -1,0 +1,37 @@
+.headline {
+    font-size: 2.1em;
+	line-height: 1.1;
+	padding: 0.5em;
+	width: 28em;
+}
+
+.headline a {
+    font-size: 0.8em;
+    float: right;
+}
+
+.headline hr {
+    color: #2B0E2F;
+    border: dashed;
+}
+
+.headline text {
+    font-size: 0.8em;
+}
+
+.topic {
+    font-size: 1.4em;
+	line-height: 1.5;
+	padding: 0.7em;
+	width: 40em;
+}
+
+.topic hr {
+    color: rosybrown;
+    border: dashed;
+}
+
+.topic text {
+    font-size: 0.8em;
+    float: right;
+}
