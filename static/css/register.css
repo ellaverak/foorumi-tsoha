@@ -1,0 +1,21 @@
+.register {
+    font-size: 1.3em;
+	line-height: 1.1;
+	padding: 0.7em;
+}
+
+.register text {
+    font-size: 1.5em;
+}
+
+
+.register #button:hover{
+    background: black;
+    color: white;
+}
+
+.register #button {
+    font-size: 1em;
+    background: mistyrose;
+}
+
