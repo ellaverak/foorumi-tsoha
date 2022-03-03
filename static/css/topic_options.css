@@ -14,3 +14,20 @@
     background: mistyrose;
 }
 
+.options #div1 {
+    position: relative;
+    left: 15em;
+    bottom: 2.5em;
+}
+
+.options #div2{
+    position: relative;
+    left: 15em;
+    bottom: 2.2em;
+}
+
+.options #div3 {
+    position: relative;
+    left: 15em;
+    bottom: 2.2em;
+}
