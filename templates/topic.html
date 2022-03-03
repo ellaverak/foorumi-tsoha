@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="static/css/topic.css">
-<meta name="viewport" content="width=device-width, initial-scale=1"
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% extends "layout.html" %}
 {% block link %}
@@ -21,9 +21,7 @@
 </div>
   
 <div class="topic">
-  {% if topic[0][1] == None %}
-  Ei ketjuja
-  {% else %}
+  {% if topic[0][1] != None %}
   {% for thread in topic %}
   <a href="/thread{{ thread[1] }}">{{ thread[2] }}</a>
   <text>

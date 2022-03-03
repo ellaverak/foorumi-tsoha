@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="static/css/thread.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script>
 function edit2() {
@@ -25,70 +28,89 @@ function edit1() {
 / <a href="topic" onclick="history.go(-2)">Salaiset alueet</a>
 {% endif %}
 / <a href="topic" onclick="history.go(-1)">{{ topic_info[0][0] }}</a>
-/ {{ thread[0][0] }}
+/ {{ thread[0][1] }}
 {% endblock %}
 {% block content %}
-<p>
-{{ thread[0][0] }}
-<p>
-{{ thread[0][2] }}
-<p>
-{{ thread[0][1] }}
-<p>
-{% if session.user_id == thread[0][9] %}
 
-<button onclick="edit1()">Muokkaa ketjua</button>
-
-<a href="/delete_thread{{ thread[0][8]}}">Poista ketju</a>
-
-<div id="div1" style="display: none;">
- <form action="/edit_thread" method="POST">
- Otsikko: <input type="text" name="title" value="{{ thread[0][0] }}" size="20">
- <p>
- Aloitusviesti: 
- <textarea name="op_content" rows="3" cols="40">{{ thread[0][1] }}</textarea>
- <p>
- <input type="submit" value="Hyväksy">
- <input type="hidden" name="thread_id" value="{{ thread[0][8] }}">
- </form>
-</div>
-{% endif %}
-<p>
-{% if thread[0][3] == None %}
-Jätä vastaus!
-{% else %}
-{% for reply in thread %}
-{{reply[6]}} {{reply[7].strftime("%Y-%m-%d %H:%M:%S") }}
-<p>
-{{reply[4]}}
-<p>
-{% if session.user_id == reply[5] %}
-
-<button onclick="edit2()">Muokkaa</button>
-
-<a href="/delete_reply{{ reply[3]}}">Poista</a>
-
-<div id="div2" style="display: none;">
- <form action="/edit_reply" method="post">
- Muokkaa viestiä: <br>
- <textarea name="content" rows="3" cols="40">{{ reply[4] }}</textarea>
- <br>
- </textarea>
- <input type="submit" value="Hyväksy">
- <input type="hidden" name="reply_id" value="{{ reply[3] }}">
- <input type="hidden" name="thread_id" value="{{ thread[0][8] }}">
- </form>
+<div class="headline">
+  {{ thread[0][1] }}
 </div>
 
+<div class="opening">
+  <text id="user">
+  {{ thread[0][4] }}
+  </text>
+  <p>
+  {{ thread[0][2] }}
+  <p>
+  {% if session.user_id == thread[0][3] %}
+
+  <button onclick="edit1()">Muokkaa ketjua</button>
+  <a href="/delete_thread{{ thread[0][0] }}">Poista ketju</a>
+
+  <div id="div1" style="display: none;">
+    <form action="/edit_thread" method="POST">
+    Otsikko: <input type="text" name="title" value="{{ thread[0][1] }}" size="20">
+    <p>
+    Aloitusviesti: 
+    <textarea name="op_content" rows="3" cols="40">{{ thread[0][2] }}</textarea>
+    <p>
+    <input type="submit" value="Hyväksy">
+    <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+    </form>
+  </div>
 {% endif %}
-{% endfor %}
-{% endif %}
-<form action="/reply" method="post">
-Viesti: <br>
-<textarea name="content" rows="3" cols="40"></textarea>
-<br>
-</textarea>
-<input type="submit" value="Lähetä">
-<input type="hidden" name="thread_id" value="{{ thread_id }}">
-</form>
+</div>
+
+<div class="replies">
+  {% if replies[0][0] != None %}
+  {% for reply in replies %}
+  <text id="user">
+  {{reply[3]}} 
+  </text>
+  <p>
+  {{reply[1]}}
+  <p>
+  <text id="time">
+  {{reply[4].strftime("%Y-%m-%d %H:%M:%S") }}
+  </text>
+  
+  {% if session.user_id == reply[2] %}
+
+  <button onclick="edit2()">Muokkaa</button>
+
+  <a href="/delete_reply{{ reply[0]}}">Poista</a>
+
+  <div id="div2" style="display: none;">
+    {% for reply2 in replies %}
+    {% if reply2[2] == reply[2] %}
+    <form action="/edit_reply" method="post">
+    Muokkaa viestiä: <br>
+    <textarea name="content" rows="3" cols="40">{{ reply2[1] }}</textarea>
+    <br>
+    </textarea>
+    <input type="submit" value="Hyväksy">
+    <input type="hidden" name="reply_id" value="{{ reply2[0] }}">
+    <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+    </form>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <hr></hr>
+  {% endfor %}
+  {% endif %}
+</div>
+
+<div class="new_reply">
+  <p>
+  <form action="/reply" method="post">
+  Viesti: <br>
+  <textarea name="content" rows="3" cols="40"></textarea>
+  <br>
+  </textarea>
+  <input id="accept" type="submit" value="Lähetä">
+  <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+  </form>
+</div>
 {% endblock %}

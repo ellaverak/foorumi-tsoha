@@ -1,25 +1,39 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="static/css/result.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 {% extends "layout.html" %}
 {% block link %}
 / Hakutulokset
 {% endblock %}
 {% block content %}
-<p>
-Hakutulokset
-<p>
-{% if replies == [] %}
-Ei tuloksia
-{% endif %}
-<p>
-{% for reply in replies %}
-{% if reply[5] == 0 %}
-{{ reply[1] }}, lähettäjä: {{ reply[4] }}
-<p>
-Alueella: {{ reply[3] }}, Ketjussa: {{ reply[2] }}
-<p> 
-<a href="/thread{{ reply[6] }}">Mene ketjuun</a>
-<p>
-{% else %}
-Vastauksia ei löytynyt
-{% endif %}
-{% endfor %}
+<div class="headline">
+  Hakutulokset
+  </div>
+<div class="result">
+  <p>
+  {% if replies == [] %}
+  Ei tuloksia
+  {% endif %}
+  <p>
+  {% for reply in replies %}
+  {% if reply[5] == 0 %}
+  {{ reply[1] }}
+  <p>
+  lähettäjä: 
+  <text id="user">
+  {{ reply[4] }}
+  </text>
+  <p>
+  Alueella: {{ reply[3] }}
+  <p>
+  Ketjussa: {{ reply[2] }} 
+  <a href="/thread{{ reply[6] }}">Mene ketjuun</a>
+  <p>
+  <hr></hr>
+  {% else %}
+  Vastauksia ei löytynyt
+  {% endif %}
+  {% endfor %}
+  </div>
 {% endblock %}
