@@ -80,3 +80,4 @@ Current state:
 - Finished navigation elements
 - overall layout is about finished.
 - frontpage layout is about finished.
+- Most of the layouts are nearly finished.
