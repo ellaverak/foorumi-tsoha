@@ -46,9 +46,12 @@ def show_topic(id):
     
 @app.route("/thread<int:id>")
 def show_thread(id):
-    thread_ = thread.show_thread(id)
+    thread_ = thread.show_thread(id)[0]
+    replies_ = thread.show_thread(id)[1]
+    print(thread_)
+    print(replies_)
     topic_info = topics.get_info_thread(id)
-    return render_template("thread.html", thread=thread_, thread_id=id, topic_info=topic_info)
+    return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
     
 @app.route("/new<int:id>")
 def new_thread(id):
@@ -64,7 +67,7 @@ def create_new_thread():
     if result[0]:
         return redirect("/thread"+str(result[1]))
     else:
-        return render_template("error.html", message="Langan luominen ei onnistunut")
+        return render_template("error.html", message="Ketjun luominen ei onnistunut")
     
 @app.route("/reply", methods=["POST"])
 def reply_to():
