@@ -1,0 +1,88 @@
+.headline {
+    font-size: 2.1em;
+    line-height: 1.1;
+    padding: 0.5em;
+    position: relative;
+}
+
+.opening {
+    border-style: dashed;
+    border-color: rosybrown;
+    width: 40em;
+    padding: 0.7em;
+    font-size: 1.3em;
+}
+
+.opening button {
+    position: relative;
+    right: 9em;
+    bottom: 7.6em;
+    float: right;
+}
+
+.opening a {
+    position: relative;
+    left: 5em;
+    bottom: 5em;
+    float: right;
+}
+
+#user {
+    color: deeppink;
+    font-size: 1.2em;
+}
+
+#time {
+    position: relative;
+    float: right;
+    bottom: 1.5em;
+    font-size: 0.8em;
+}
+
+.replies {
+    border-style: dashed;
+    border-color: #2B0E2F;
+    width: 40em;
+    padding: 0.7em;
+    font-size: 1.3em;
+}
+
+.replies hr {
+    color: #2B0E2F;
+    border: dashed;
+    width: 40em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+}
+
+.replies button {
+    position: relative;
+    left: 6.7em;
+    bottom: 7.6em;
+    float: right;
+}
+
+.replies a {
+    position: relative;
+    left: 10.5em;
+    bottom: 5em;
+    float: right;
+}
+
+.new_reply {
+    width: 40em;
+    padding: 0.5em;
+    font-size: 1.3em;
+    color: thistle;
+}
+
+.new_reply #accept:hover{
+    background: black;
+    color: white;
+}
+
+.new_reply #accept {
+    font-size: 0.8em;
+    background: mistyrose;
+}
+

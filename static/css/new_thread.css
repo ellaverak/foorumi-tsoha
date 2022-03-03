@@ -1,0 +1,15 @@
+.new_thread {
+    width: 40em;
+    padding: 0.7em;
+    font-size: 1.3em;
+}
+
+.new_thread #accept:hover{
+    background: black;
+    color: white;
+}
+
+.new_thread #accept {
+    font-size: 1em;
+    background: mistyrose;
+}
