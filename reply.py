@@ -26,7 +26,7 @@ def delete_reply(id):
          thread_id = db.session.execute(sql, {"id":id}).fetchone()[0]
          db.session.commit()
      except:
-         return False
+         return False, False
      return True, thread_id
     
 def search(query):
@@ -34,6 +34,6 @@ def search(query):
              (SELECT T.name FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), 
              (SELECT U.username FROM users U LEFT JOIN replies D ON U.id = D.user_id WHERE D.id = R.id), 
              (SELECT T.secret FROM topics T LEFT JOIN threads J ON J.topic_id = T.id WHERE J.id = H.id), 
-             H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE R.content LIKE :query"""
+             H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE lOWER(R.content) LIKE LOWER(:query)"""
     result = db.session.execute(sql, {"query":"%"+query+"%"})
     return result.fetchall()
