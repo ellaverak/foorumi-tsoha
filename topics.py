@@ -70,8 +70,10 @@ def get_info_thread(id):
 def get_info_topic(id):
     sql = "SELECT name, secret, id FROM topics WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
-    return  list(result.fetchall())
+    return  result.fetchall()
     
-    
-    
+def get_list():
+    sql = "SELECT name FROM topics"
+    result = db.session.execute(sql)
+    return  result.fetchall()
     
