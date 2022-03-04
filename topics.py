@@ -40,7 +40,7 @@ def create_topic(name):
         new = db.session.execute(sql, {"name":name}).fetchone()[0]
         db.session.commit()
     except:
-        return False
+        return False, False
     return True, new
 
 def create_secret_topic(name, choises):
@@ -59,16 +59,16 @@ def create_secret_topic(name, choises):
     
         db.session.commit()
     except:
-        return False
+        return False, False
     return True, new
     
 def get_info_thread(id):
-    sql = "SELECT T.name, T.secret FROM topics T LEFT JOIN threads H ON T.id=H.topic_id WHERE H.id=:id"
+    sql = "SELECT T.name, T.secret, T.id FROM topics T LEFT JOIN threads H ON T.id=H.topic_id WHERE H.id=:id"
     result = db.session.execute(sql, {"id":id})
     return  list(result.fetchall())
     
 def get_info_topic(id):
-    sql = "SELECT name, secret FROM topics WHERE id=:id"
+    sql = "SELECT name, secret, id FROM topics WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     return  list(result.fetchall())
     
