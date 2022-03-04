@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 import users, topics, thread, reply
 
 @app.route("/")
@@ -133,7 +133,9 @@ def edit_thread():
 @app.route("/topic_options")
 def topic_options():
     users_ = users.get_users()
-    return render_template("topic_options.html", users=users_)
+    topics_ = topics.get_list()
+    print(topics_)
+    return render_template("topic_options.html", users=users_, topics=topics_)
     
 @app.route("/delete_topic", methods=["POST"])   
 def delete_topic():
