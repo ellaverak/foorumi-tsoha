@@ -37,6 +37,11 @@ body {
     border-bottom-width: .5em;
 }
 
+.login #logged_in {
+    position: relative;
+    left: 0.6em;
+}
+
 .search {
     background: black;
     width: 25em;
