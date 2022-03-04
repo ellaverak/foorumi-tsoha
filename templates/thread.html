@@ -25,9 +25,9 @@ function edit1() {
 {% extends "layout.html" %}
 {% block link %}
 {% if topic_info[0][1] == 1 %}
-/ <a href="topic" onclick="history.go(-2)">Salaiset alueet</a>
+/ <a href="/secret_topics">Salaiset alueet</a>
 {% endif %}
-/ <a href="topic" onclick="history.go(-1)">{{ topic_info[0][0] }}</a>
+/ <a href="/topics{{topic_info[0][2]}}">{{ topic_info[0][0] }}</a>
 / {{ thread[0][1] }}
 {% endblock %}
 {% block content %}
@@ -106,7 +106,7 @@ function edit1() {
   <p>
   <form action="/reply" method="post">
   Viesti: <br>
-  <textarea name="content" rows="3" cols="40"></textarea>
+  <textarea name="content" rows="3" cols="40", placeholder="Jätä vastaus!"></textarea>
   <br>
   </textarea>
   <input id="accept" type="submit" value="Lähetä">

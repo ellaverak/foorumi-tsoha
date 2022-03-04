@@ -38,7 +38,6 @@ function delete_() {
 {% block content %}
 
 <div class="options">
-   <div class="create_public">
      <p>
      <button onclick="create1()">Luo yleinen alue</button>
      <div id="div1" style="display: none;">
@@ -48,10 +47,7 @@ function delete_() {
      <input type="submit" value="Hyväksy">
      </form>
      </div>
-     <p>
-   </div>
     
-   <div class="create_secret">
      <p>
      <button onclick="create2()">Luo salainen alue</button>
      <div id="div2" style="display: none;">
@@ -73,9 +69,7 @@ function delete_() {
      {% endfor %}
      </select>
      </div>
-   </div>
    
-   <div class="delete">
      <p>
      <button onclick="delete_()">Poista alue</button>
      <div id="div3" style="display: none;">
@@ -86,6 +80,5 @@ function delete_() {
      </form>
      </div>
      <p>
-   </div>
 </div>
  {% endblock %}
