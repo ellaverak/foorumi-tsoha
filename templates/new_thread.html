@@ -2,6 +2,20 @@
 <link rel="stylesheet" href="static/css/new_thread.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script>
+function check(form) {
+    if (form.title.value.length == 0) {
+        alert("Kirjoita ketjulle otsikko");
+        return false;
+    }
+    if (form.op_content.value.length == 0) {
+        alert("Kirjoita aloitusviesti");
+        return false;
+    }
+    return true;
+}
+</script>
+
 {% extends "layout.html" %}
 {% block link %}
 {% if topic_info[0][1] == 1 %}
@@ -13,12 +27,11 @@
 {% block content %}
 <div class="new_thread">
   <p>
-  <form action="/create_new" method="POST">
-  Otsikko: <input type="text" name="title" size="20">
+  <form action="/create_new" method="POST" onsubmit="return check(this)">
+  Otsikko: <input type="text" name="title" maxlength="40">
   <p>
   Aloitusviesti: 
-  <textarea name="op_content" rows="3" cols="40">
-  </textarea>
+  <textarea name="op_content" rows="3" cols="40" maxlength="1000"></textarea>
   <p>
   <input id="accept" type="submit" value="Luo ketju">
   <input type="hidden" name="topic_id" value="{{ topic_id }}">

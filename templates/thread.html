@@ -20,6 +20,22 @@ function edit1() {
     x.style.display = "none";
   }
 }
+
+function check(form) {
+    if (form.title.value.length == 0) {
+        alert("Kirjoita ketjulle otsikko");
+        return false;
+    }
+    if (form.op_content.value.length == 0) {
+        alert("Kirjoita aloitusviesti");
+        return false;
+    }
+    if (form.content.value.length == 0) {
+        alert("Kirjoita viesti");
+        return false;
+    }
+    return true;
+}
 </script> 
 
 {% extends "layout.html" %}
@@ -49,11 +65,11 @@ function edit1() {
   <a href="/delete_thread{{ thread[0][0] }}">Poista ketju</a>
 
   <div id="div1" style="display: none;">
-    <form action="/edit_thread" method="POST">
-    Otsikko: <input type="text" name="title" value="{{ thread[0][1] }}" size="20">
+    <form action="/edit_thread" method="POST" onsubmit="return check(this)">
+    Otsikko: <input type="text" name="title" value="{{ thread[0][1] }}" maxlength="40">
     <p>
     Aloitusviesti: 
-    <textarea name="op_content" rows="3" cols="40">{{ thread[0][2] }}</textarea>
+    <textarea name="op_content" maxlength="1000" rows="3" cols="40">{{ thread[0][2] }}</textarea>
     <p>
     <input type="submit" value="Hyväksy">
     <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
@@ -84,11 +100,10 @@ function edit1() {
   <div id="div2" style="display: none;">
     {% for reply2 in replies %}
     {% if reply2[2] == reply[2] %}
-    <form action="/edit_reply" method="post">
+    <form action="/edit_reply" method="POST" onsubmit="return check(this)">
     Muokkaa viestiä: <br>
-    <textarea name="content" rows="3" cols="40">{{ reply2[1] }}</textarea>
+    <textarea name="content" maxlength="1000" rows="3" cols="40">{{ reply2[1] }}</textarea>
     <br>
-    </textarea>
     <input type="submit" value="Hyväksy">
     <input type="hidden" name="reply_id" value="{{ reply2[0] }}">
     <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
@@ -104,11 +119,10 @@ function edit1() {
 
 <div class="new_reply">
   <p>
-  <form action="/reply" method="post">
+  <form action="/reply" method="POST" onsubmit="return check(this)">
   Viesti: <br>
-  <textarea name="content" rows="3" cols="40", placeholder="Jätä vastaus!"></textarea>
+  <textarea name="content" rows="3" cols="40" placeholder="Jätä vastaus!"></textarea>
   <br>
-  </textarea>
   <input id="accept" type="submit" value="Lähetä">
   <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
   </form>

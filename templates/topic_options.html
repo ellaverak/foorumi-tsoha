@@ -29,6 +29,22 @@ function delete_() {
     x.style.display = "none";
   }
 }
+
+function check(form) {
+    if (form.topic_name.value.length == 0) {
+        alert("Kirjoita alueen nimi");
+        return false;
+    }
+    if (form.password1.value.length < 4) {
+        alert("Salasanan on oltava vähintään neljän merkin pituinen");
+        return false;
+    }
+    if (form.password1.value != form.password2.value) {
+        alert("Salasanat eivät täsmää");
+        return false;
+    }
+    return true;
+}
 </script>
 
 {% extends "layout.html" %}
@@ -41,8 +57,8 @@ function delete_() {
      <p>
      <button onclick="create1()">Luo yleinen alue</button>
      <div id="div1" style="display: none;">
-     <form action="/create_topic" method="POST">
-     Anna alueelle nimi: <input type="text" name="topic_name" size="20">
+     <form action="/create_topic" method="POST" onsubmit="return check(this)">
+     Anna alueelle nimi: <input type="text" name="topic_name" maxlength="40">
      <p>
      <input type="submit" value="Hyväksy">
      </form>
@@ -51,12 +67,11 @@ function delete_() {
      <p>
      <button onclick="create2()">Luo salainen alue</button>
      <div id="div2" style="display: none;">
-     <form action="/create_secret_topic" method="POST">
-     Anna alueelle nimi: <input type="text" name="topic_name" size="20">
+     <form action="/create_secret_topic" method="POST" onsubmit="return check(this)">
+     Anna alueelle nimi: <input type="text" name="topic_name" maxlength="40">
      <p>
      Valitse käyttäjät, jotka näkevät alueen:
-     <textarea name="choises" rows="5" cols="20" placeholder="käyttäjä_1&#10;käyttäjä_2&#10;käyttäjä_3&#10;jne.">
-     </textarea>
+     <textarea name="choises" rows="5" cols="20" placeholder="käyttäjä_1&#10;käyttäjä_2&#10;käyttäjä_3&#10;jne."></textarea>
      <p>
      <input type="submit" value="Hyväksy">
      </form>
@@ -73,8 +88,8 @@ function delete_() {
      <p>
      <button onclick="delete_()">Poista alue</button>
      <div id="div3" style="display: none;">
-     <form action="/delete_topic" method="POST">
-     Anna alueen nimi: <input type="text" name="topic_name" size="20">
+     <form action="/delete_topic" method="POST" onsubmit="return check(this)">
+     Anna alueen nimi: <input type="text" name="topic_name" maxlength="40">
      <p>
      <input type="submit" value="Hyväksy">
      </form>
