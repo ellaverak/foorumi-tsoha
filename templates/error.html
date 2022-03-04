@@ -7,5 +7,8 @@
   {% block content %}
   <p>
   <p style="text-align:center;color:pink;font-size:25px;">Virhe: {{ message }}</p>
+  {% if not session.user_id %}
+  <p style="text-align:center;color:pink;font-size:25px;">Muista rekisteröityä ja kirjautua sisään!</p>
+  {% endif %}
   {% endblock %}
 </html>
