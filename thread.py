@@ -29,7 +29,7 @@ def delete_thread(id):
         topic_id = db.session.execute(sql, {"id":id}).fetchone()[0]
         db.session.commit()
     except:
-        return False
+        return False, False
     return True, topic_id
 
 def edit_thread(title, op_content, thread_id):
