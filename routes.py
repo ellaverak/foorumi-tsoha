@@ -29,14 +29,14 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
-            return redirect("/")
+            return redirect(request.referrer)
         else:
             return render_template("error.html", message="Väärä tunnus tai salasana")
 
 @app.route("/logout")
 def logout():
     users.logout()
-    return redirect("/")
+    return redirect(request.referrer)
 
 @app.route("/topics<int:id>")
 def show_topic(id):
@@ -48,9 +48,8 @@ def show_topic(id):
 def show_thread(id):
     thread_ = thread.show_thread(id)[0]
     replies_ = thread.show_thread(id)[1]
-    print(thread_)
-    print(replies_)
     topic_info = topics.get_info_thread(id)
+    print(topic_info)
     return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
     
 @app.route("/new<int:id>")
