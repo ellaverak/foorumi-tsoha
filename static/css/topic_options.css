@@ -31,3 +31,10 @@
     left: 15em;
     bottom: 2.2em;
 }
+
+.options #div4 {
+    position: absolute;
+    left: 60em;
+    top: 10em;
+}
+
