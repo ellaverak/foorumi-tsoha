@@ -23,6 +23,7 @@ def login(username, password):
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
             session["user_role"] = user.role
+            session["username"] = username
             return True
         else:
             return False
@@ -30,6 +31,7 @@ def login(username, password):
 def logout():
     del session["user_id"]
     del session["user_role"]
+    del session["username"]
 
 def user_id():
     return session.get("user_id",0)
@@ -52,6 +54,8 @@ def access(id):
     result = db.session.execute(sql, {"id":id})
     users = list(result.fetchall())
     user_id = session.get("user_id",0)
+    if session.get("user_role", 0) == 1:
+        return True
     for user in users:
         if user_id == user[0]:
             return True
