@@ -81,4 +81,4 @@ Current state:
 - overall layout is about finished.
 - frontpage layout is about finished.
 - Most of the layouts are nearly finished.
-- Navigation has some issues but it should work now.
+- Navigation had some issues but it should work now.
