@@ -82,3 +82,4 @@ Current state:
 - frontpage layout is about finished.
 - Most of the layouts are nearly finished.
 - Navigation had some issues but it should work now.
+- Added popup error messages and fixed regular error messages.
