@@ -17,7 +17,11 @@ def register():
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("error.html", message="Salasanat eroavat")
+            return render_template("error.html", message="Salasanat eivät täsmää")
+        if len(username) == 0:
+            return render_template("error.html", message="Kirjoita käyttäjänimi")
+        if len(password1) < 4 or len(password2) < 4:
+            return render_template("error.html", message="Salasanan on oltava vähintään neljän merkin pituinen")
         if users.register(username, password1):
             return redirect("/")
         else:
@@ -49,7 +53,6 @@ def show_thread(id):
     thread_ = thread.show_thread(id)[0]
     replies_ = thread.show_thread(id)[1]
     topic_info = topics.get_info_thread(id)
-    print(topic_info)
     return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
     
 @app.route("/new<int:id>")
@@ -61,7 +64,12 @@ def new_thread(id):
 def create_new_thread():
     title = request.form["title"]
     op_content = request.form["op_content"]
+    print(op_content)
     topic_id = request.form["topic_id"]
+    if len(title) == 0:
+        return render_template("error.html", message="Kirjoita ketjulle otsikko")
+    if len(op_content) == 0:
+        return render_template("error.html", message="Kirjoita aloitusviesti")
     result = thread.create_thread(title, op_content, topic_id)
     if result[0]:
         return redirect("/thread"+str(result[1]))
@@ -72,6 +80,8 @@ def create_new_thread():
 def reply_to():
     content = request.form["content"]
     thread_id = request.form["thread_id"]
+    if len(content) == 0:
+            return render_template("error.html", message="Kirjoita viesti")
     if reply.leave_reply(content, thread_id):
         return redirect("/thread"+str(thread_id))
     else:
@@ -91,6 +101,8 @@ def edit_reply():
     content = request.form["content"]
     reply_id = request.form["reply_id"]
     thread_id = request.form["thread_id"]
+    if len(content) == 0:
+            return render_template("error.html", message="Kirjoita viesti")
     if reply.edit_reply(content, reply_id):
         return redirect("/thread"+str(thread_id))
     else:
@@ -109,6 +121,10 @@ def edit_thread():
     title = request.form["title"]
     op_content = request.form["op_content"]
     thread_id = request.form["thread_id"]
+    if len(title) == 0:
+        return render_template("error.html", message="Kirjoita ketjulle otsikko")
+    if len(op_content) == 0:
+        return render_template("error.html", message="Kirjoita aloitusviesti")
     if thread.edit_thread(title, op_content, thread_id):
         return redirect("/thread"+str(thread_id))
     else:
@@ -122,6 +138,8 @@ def topic_options():
 @app.route("/delete_topic", methods=["POST"])   
 def delete_topic():
     topic_name = request.form["topic_name"]
+    if len(topic_name) == 0:
+        return render_template("error.html", message="Kirjoita alueen nimi")
     if topics.delete_topic(topic_name):
         return redirect("/")
     else:
@@ -130,6 +148,8 @@ def delete_topic():
 @app.route("/create_topic", methods=["POST"])
 def create_topic():
     topic_name = request.form["topic_name"]
+    if len(topic_name) == 0:
+        return render_template("error.html", message="Kirjoita alueen nimi")
     result = topics.create_topic(topic_name)
     if result[0]:
         return redirect("/topics"+str(result[1]))
@@ -153,6 +173,8 @@ def access(id):
 def create_secret():
     topic_name = request.form["topic_name"]
     choises = request.form["choises"]
+    if len(topic_name) == 0:
+        return render_template("error.html", message="Kirjoita alueen nimi")
     result = topics.create_secret_topic(topic_name, choises)
     if result[0]:
         return redirect("/topics"+str(result[1]))
