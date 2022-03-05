@@ -48,18 +48,32 @@ def logout():
     users.logout()
     return redirect(request.referrer)
 
-@app.route("/topics<int:id>" , methods=["POST", "GET"])
+@app.route("/topics<int:id>")
 def show_topic(id):
     topic = topics.show_topic(id)
     users_ = users.get_secret_users(id)
-    return render_template("topic.html", topic=topic, topic_id=id, users=users_)
+    secret = topics.get_secret(id)
+    if secret == 0:
+        return render_template("topic.html", topic=topic, topic_id=id, users=users_)
+    else:
+        if users.access(id):
+           return render_template("topic.html", topic=topic, topic_id=id, users=users_)
+        else:
+           return render_template("error.html", message="Sinulla ei ole pääsyä alueelle")
     
 @app.route("/thread<int:id>")
 def show_thread(id):
     thread_ = thread.show_thread(id)[0]
     replies_ = thread.show_thread(id)[1]
     topic_info = topics.get_info_thread(id)
-    return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
+    print(topic_info)
+    if topic_info[0][1] == 0:
+        return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
+    else:
+        if users.access(topic_info[0][2]):
+            return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
+        else:
+            return render_template("error.html", message="Sinulla ei ole pääsyä ketjuun")
     
 @app.route("/new<int:id>")
 def new_thread(id):
@@ -140,7 +154,6 @@ def edit_thread():
 def topic_options():
     users_ = users.get_users()
     topics_ = topics.get_list()
-    print(topics_)
     return render_template("topic_options.html", users=users_, topics=topics_)
     
 @app.route("/delete_topic", methods=["POST"])   
@@ -169,13 +182,6 @@ def secret_topics():
     s_topic = topics.get_secret_topics()
     users_ = users.get_users()
     return render_template("secret_topics.html", s_topics=s_topic, users=users_)
-    
-@app.route("/access<int:id>")
-def access(id):
-    if users.access(id):
-        return redirect("/topics"+str(id))
-    else:
-        return render_template("error.html", message="Sinulla ei ole pääsyä alueelle")
 
 @app.route("/create_secret_topic", methods=["POST"])
 def create_secret():
