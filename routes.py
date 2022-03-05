@@ -3,9 +3,13 @@ from flask import render_template, request, redirect, url_for, session
 import users, topics, thread, reply
 
 @app.context_processor
+def inject_users():
+    all_users = users.get_users()
+    return dict(all_users=all_users)
+
+@app.context_processor
 def inject_topics():
     topic_list = topics.get_list()
-    print(topic_list)
     return dict(topic_list=topic_list)
 
 @app.route("/")
@@ -51,8 +55,8 @@ def logout():
 @app.route("/topics<int:id>")
 def show_topic(id):
     topic = topics.show_topic(id)
-    users_ = users.get_secret_users(id)
     secret = topics.get_secret(id)
+    users_ = users.get_secret_users(id)
     if secret == 0:
         return render_template("topic.html", topic=topic, topic_id=id, users=users_)
     else:
@@ -82,9 +86,10 @@ def new_thread(id):
 
 @app.route("/create_new", methods=["POST"])
 def create_new_thread():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     title = request.form["title"]
     op_content = request.form["op_content"]
-    print(op_content)
     topic_id = request.form["topic_id"]
     if len(title) == 0:
         return render_template("error.html", message="Kirjoita ketjulle otsikko")
@@ -98,6 +103,8 @@ def create_new_thread():
     
 @app.route("/reply", methods=["POST"])
 def reply_to():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     content = request.form["content"]
     thread_id = request.form["thread_id"]
     if len(content) == 0:
@@ -118,6 +125,8 @@ def delete_reply(id):
     
 @app.route("/edit_reply", methods=["POST"])
 def edit_reply():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     content = request.form["content"]
     reply_id = request.form["reply_id"]
     thread_id = request.form["thread_id"]
@@ -138,6 +147,8 @@ def delete_thread(id):
 
 @app.route("/edit_thread", methods=["POST"])
 def edit_thread():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     title = request.form["title"]
     op_content = request.form["op_content"]
     thread_id = request.form["thread_id"]
@@ -158,6 +169,8 @@ def topic_options():
     
 @app.route("/delete_topic", methods=["POST"])   
 def delete_topic():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     topic_name = request.form["topic_name"]
     if len(topic_name) == 0:
         return render_template("error.html", message="Kirjoita alueen nimi")
@@ -168,6 +181,8 @@ def delete_topic():
     
 @app.route("/create_topic", methods=["POST"])
 def create_topic():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     topic_name = request.form["topic_name"]
     if len(topic_name) == 0:
         return render_template("error.html", message="Kirjoita alueen nimi")
@@ -185,6 +200,8 @@ def secret_topics():
 
 @app.route("/create_secret_topic", methods=["POST"])
 def create_secret():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     topic_name = request.form["topic_name"]
     choises = request.form["choises"]
     if len(topic_name) == 0:
@@ -195,23 +212,22 @@ def create_secret():
     else:
         return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")  
 
-@app.route("/result")
+@app.route("/result", methods=["POST"])
 def result():
-    query = request.args["query"]
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    query = request.form["query"]
     replies = reply.search(query)
     return render_template("result.html", replies=replies)
 
 @app.route("/add_secret_users", methods=["POST"])
 def add_secret():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     choises = request.form["choises"]
     topic_id = request.form["topic_id"]
     if users.add_secret(topic_id, choises):
         return redirect("/topics"+str(topic_id))
     else:
         return render_template("error.html", message="Käyttäjien lisääminen ei onnistunut")
-
-@app.route("/back")
-def back():
-    return redirect("/")
-    
         
