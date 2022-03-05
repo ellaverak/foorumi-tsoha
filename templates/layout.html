@@ -19,10 +19,11 @@
   <div id="container">
   <div class="search">
     <p>
-    <form action="/result" method="GET">
+    <form action="/result" method="POST">
     <label for="query">Hae viestiä:</label>
     <input type="text" name="query">
     <p>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input id="button" type="submit" value="Hae">
     </form>
     <p>
@@ -54,15 +55,22 @@
  
  <div class="topics">
      <text id="headline">
-     <p style="text-align:center;font-size:30px;">ALUEET</p>
+     <p style="font-size:30px;">Alueet</p>
      </text>
      <p>
      {% for topic in topic_list %}
      <a id="name" style="color:pink;font-size:25px;" href="/topics{{ topic[1] }}">{{ topic[0] }}</a>
      <br>
      {% endfor %}
+     <p>
+     <p style="font-size:30px;">Palstan käyttäjät</p>
+     <select name="list" multiple="multiple">
+     {% for user in all_users %}
+     <option value="{{ user[0] }}">{{ user[1] }}</option>
+     {% endfor %}
+     </select>
  </div>
-     
+   
  </div>
 
 </body>

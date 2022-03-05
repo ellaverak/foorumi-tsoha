@@ -68,13 +68,14 @@ function check(form) {
 
   <div id="div1" style="display: none;">
     <form action="/edit_thread" method="POST" onsubmit="return check(this)">
-    Otsikko: <input type="text" name="title" value="{{ thread[0][1] }}" maxlength="40">
+    Otsikko: <input type="text" name="title" value="{{ thread[0][1] }}" maxlength="45">
     <p>
     Aloitusviesti: 
     <textarea name="op_content" maxlength="1000" rows="3" cols="40">{{ thread[0][2] }}</textarea>
     <p>
     <input type="submit" value="Hyväksy">
     <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
   </div>
 {% endif %}
@@ -105,6 +106,7 @@ function check(form) {
     <textarea name="content" maxlength="1000" rows="3" cols="40">{{ reply[1] }}</textarea>
     <br>
     <input type="submit" value="Hyväksy">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="hidden" name="reply_id" value="{{ reply[0] }}">
     <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
     </form>
@@ -120,10 +122,11 @@ function check(form) {
   <p>
   <form action="/reply" method="POST" onsubmit="return check(this)">
   Viesti: <br>
-  <textarea name="content" rows="3" cols="40" placeholder="Jätä vastaus!"></textarea>
+  <textarea name="content" maxlength="1000" rows="3" cols="40" placeholder="Jätä vastaus!"></textarea>
   <br>
   <input id="accept" type="submit" value="Lähetä">
   <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   </form>
 </div>
 {% endblock %}
