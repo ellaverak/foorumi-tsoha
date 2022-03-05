@@ -58,6 +58,14 @@ body {
     height: 4em;
 }
 
+.topics {
+    position: relative;
+    left: 70em;
+    line-height: 2.7em;
+    text-align: center;
+    
+}
+
 #container {
 	position: absolute;
 	top: 0px;
