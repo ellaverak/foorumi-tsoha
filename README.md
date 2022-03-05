@@ -83,3 +83,4 @@ Current state:
 - Most of the layouts are nearly finished.
 - Navigation had some issues but it should work now.
 - Added popup error messages and fixed regular error messages.
+- Users can no longer access secret areas through the address bar if they aren't allowed into the area.
