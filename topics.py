@@ -21,7 +21,7 @@ def get_secret_topics():
 
 def show_topic(id):
     sql = """SELECT T.name, H.id, H.title, H.sent_at, H.user_id, T.secret 
-             FROM topics T LEFT JOIN threads H  ON T.id = H.topic_id WHERE T.id=:id"""
+             FROM topics T LEFT JOIN threads H  ON T.id = H.topic_id WHERE T.id=:id ORDER BY T.id"""
     result = db.session.execute(sql, {"id":id})
     return list(result.fetchall())
     
@@ -76,4 +76,10 @@ def get_list():
     sql = "SELECT name, id, secret FROM topics"
     result = db.session.execute(sql)
     return  result.fetchall()
+    
+def get_secret(id):
+    sql = "SELECT secret FROM topics WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return  result.fetchone()[0]
+    
     
