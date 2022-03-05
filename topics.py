@@ -73,7 +73,7 @@ def get_info_topic(id):
     return  result.fetchall()
     
 def get_list():
-    sql = "SELECT name, id, secret FROM topics"
+    sql = "SELECT name, id, secret FROM topics ORDER BY id"
     result = db.session.execute(sql)
     return  result.fetchall()
     
