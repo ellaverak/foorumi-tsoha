@@ -5,7 +5,7 @@ def get_topics():
     sql = """SELECT A.id, A.name, 
              (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id),
              (SELECT COUNT(R.*) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id),
-             (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id)
+             (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id), A.secret
              FROM topics A WHERE secret=0"""
     result = db.session.execute(sql)
     return  list(result.fetchall())
@@ -15,7 +15,7 @@ def get_secret_topics():
              (SELECT COUNT(H.*) FROM topics B LEFT JOIN threads H ON B.id = H.topic_id WHERE B.id = A.id),
              (SELECT COUNT(R.*) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id),
              (SELECT MIN(R.sent_at) FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.topic_id = A.id),
-             A.user_id FROM topics A WHERE secret=1"""
+             A.user_id, A.secret FROM topics A WHERE secret=1"""
     result = db.session.execute(sql)
     return  list(result.fetchall())
 
@@ -73,7 +73,7 @@ def get_info_topic(id):
     return  result.fetchall()
     
 def get_list():
-    sql = "SELECT name FROM topics"
+    sql = "SELECT name, id, secret FROM topics"
     result = db.session.execute(sql)
     return  result.fetchall()
     
