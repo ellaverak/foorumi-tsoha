@@ -66,6 +66,12 @@ body {
     
 }
 
+.topic #headline {
+    position: relative;
+    left: 0.5em;
+}
+
+
 #container {
 	position: absolute;
 	top: 0px;
