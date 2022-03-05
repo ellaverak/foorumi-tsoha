@@ -2,11 +2,17 @@ from app import app
 from flask import render_template, request, redirect, url_for, session
 import users, topics, thread, reply
 
+@app.context_processor
+def inject_topics():
+    topic_list = topics.get_list()
+    print(topic_list)
+    return dict(topic_list=topic_list)
+
 @app.route("/")
 def index():
     topics_ = topics.get_topics()
     return render_template("index.html", topics=topics_)
-    
+
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "GET":
@@ -42,7 +48,7 @@ def logout():
     users.logout()
     return redirect(request.referrer)
 
-@app.route("/topics<int:id>")
+@app.route("/topics<int:id>" , methods=["POST", "GET"])
 def show_topic(id):
     topic = topics.show_topic(id)
     users_ = users.get_secret_users(id)
