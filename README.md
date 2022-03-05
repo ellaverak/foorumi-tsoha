@@ -35,6 +35,7 @@ ADMINS:
 All admins can do everything that a regular user can.
 In addition admins can:
 - see topic options
+- access all secret topics
 - create a new public topic
 - create a new secret topic and add users to the topic during creation
 - add new users to a secret topic after the topic has been created
