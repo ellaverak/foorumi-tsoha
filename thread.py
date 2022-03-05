@@ -8,7 +8,7 @@ def show_thread(id):
     result = db.session.execute(sql, {"id":id})
     result1 = list(result.fetchall())
     sql = """SELECT R.id, R.content, R.user_id, (SELECT U.username FROM users U WHERE U.id = R.user_id), 
-             R.sent_at, H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.id=:id"""
+             R.sent_at, H.id FROM threads H LEFT JOIN replies R ON H.id = R.thread_id WHERE H.id=:id ORDER BY R.sent_at"""
     result = db.session.execute(sql, {"id":id})
     result2 = list(result.fetchall())
     return  [result1, result2]
