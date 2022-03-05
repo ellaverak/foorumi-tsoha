@@ -51,6 +51,16 @@
     <a id ="new_user" href="/register">Rekisteröidy</a>
     {% endif %}
  </div>
+ 
+ <div class="topics">
+     <p style="font-size:30px;">ALUEET</p>
+     <p>
+     {% for topic in topic_list %}
+     <a id="name" style="color:pink;font-size:25px;" href="/topics{{ topic[1] }}">{{ topic[0] }}</a>
+     <br>
+     {% endfor %}
+ </div>
+     
  </div>
 
 </body>

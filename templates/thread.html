@@ -2,9 +2,10 @@
 <link rel="stylesheet" href="static/css/thread.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+{% for reply in replies %}
 <script>
-function edit2() {
-  var x = document.getElementById("div2");
+function edit2(reply) {
+  var x = document.getElementById(reply);
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -36,7 +37,8 @@ function check(form) {
     }
     return true;
 }
-</script> 
+</script>
+{% endfor %}
 
 {% extends "layout.html" %}
 {% block link %}
@@ -93,29 +95,26 @@ function check(form) {
   
   {% if session.user_id == reply[2] %}
 
-  <button onclick="edit2()">Muokkaa</button>
+  <button onclick="edit2({{ reply[0] }})">Muokkaa</button>
 
   <a href="/delete_reply{{ reply[0]}}">Poista</a>
 
-  <div id="div2" style="display: none;">
-    {% for reply2 in replies %}
-    {% if reply2[2] == reply[2] %}
+  <div id="{{ reply[0] }}" style="display: none;">
     <form action="/edit_reply" method="POST" onsubmit="return check(this)">
     Muokkaa viestiä: <br>
-    <textarea name="content" maxlength="1000" rows="3" cols="40">{{ reply2[1] }}</textarea>
+    <textarea name="content" maxlength="1000" rows="3" cols="40">{{ reply[1] }}</textarea>
     <br>
     <input type="submit" value="Hyväksy">
-    <input type="hidden" name="reply_id" value="{{ reply2[0] }}">
+    <input type="hidden" name="reply_id" value="{{ reply[0] }}">
     <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
     </form>
-    {% endif %}
-    {% endfor %}
   </div>
   {% endif %}
   <hr></hr>
   {% endfor %}
   {% endif %}
 </div>
+
 
 <div class="new_reply">
   <p>
