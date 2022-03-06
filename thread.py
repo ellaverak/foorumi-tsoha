@@ -1,5 +1,6 @@
 from db import db
 import users
+import textwrap
 from flask import session
 
 def show_thread(id):
@@ -17,6 +18,9 @@ def create_thread(title, op_content, topic_id):
     user_id = users.user_id()
     if user_id == 0:
         return False, False
+    
+    op_content = "\n".join(textwrap.wrap(op_content, width=78))   
+      
     sql = """INSERT INTO threads (title, op_content, topic_id, user_id, sent_at) 
              VALUES (:title, :op_content, :topic_id, :user_id, NOW()) RETURNING id"""
     new = db.session.execute(sql, {"title":title, "op_content":op_content, "topic_id":topic_id, "user_id":user_id}).fetchone()[0]
@@ -36,6 +40,9 @@ def edit_thread(title, op_content, thread_id):
     user_id = users.user_id()
     if user_id == 0:
         return False
+        
+    op_content = "\n".join(textwrap.wrap(op_content, width=78))
+    
     sql = "UPDATE threads SET title=:title, op_content=:op_content WHERE id=:thread_id"
     db.session.execute(sql, {"title":title, "op_content":op_content, "thread_id":thread_id})
     db.session.commit()
