@@ -1,3 +1,4 @@
+from logging import raiseExceptions
 import secrets
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -6,9 +7,16 @@ from db import db
 
 def register(username, password):
     hash_value = generate_password_hash(password)
+    test = []
+    for i in get_users():
+        test.append(i[1])
+    if username in test:
+        return False
     try:
-        sql = "INSERT INTO users (username,password, role) VALUES (:username,:password, 0)"
-        db.session.execute(sql, {"username": username, "password": hash_value})
+        sql = """INSERT INTO users (username,password, role)
+                VALUES (:username,:password, 0) RETURNING id"""
+        db.session.execute(
+            sql, {"username": username, "password": hash_value}).fetchone()
         db.session.commit()
     except:
         return False
