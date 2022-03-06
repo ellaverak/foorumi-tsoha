@@ -57,3 +57,13 @@
     background: mistyrose;
 }
 
+#accept:hover{
+    background: black;
+    color: white;
+}
+
+#accept {
+    font-size: 0.9em;
+    background: mistyrose;
+}
+

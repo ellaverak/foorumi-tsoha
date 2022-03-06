@@ -18,6 +18,12 @@
     right: 8.7em;
     bottom: 2.5em;
     float: right;
+    background: mistyrose;
+}
+
+.opening button:hover{
+    background: black;
+    color: white;
 }
 
 .opening a {
@@ -56,6 +62,7 @@
     width: 40em;
     padding: 0.7em;
     font-size: 1.3em;
+    
 }
 
 .replies hr {
@@ -71,6 +78,12 @@
     right: 4.5em;
     bottom: 2.9em;
     float: right;
+    background: mistyrose;
+}
+
+.replies button:hover{
+    background: black;
+    color: white;
 }
 
 .replies a {
@@ -92,12 +105,12 @@
     color: thistle;
 }
 
-.new_reply #accept:hover{
+#accept:hover{
     background: black;
     color: white;
 }
 
-.new_reply #accept {
+#accept {
     font-size: 0.9em;
     background: mistyrose;
 }
