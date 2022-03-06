@@ -15,15 +15,15 @@
 
 .opening button {
     position: relative;
-    right: 9em;
-    bottom: 7.6em;
+    right: 8.7em;
+    bottom: 2.5em;
     float: right;
 }
 
 .opening a {
     position: relative;
-    left: 5em;
-    bottom: 5em;
+    left: 5.3em;
+    bottom: 1.7em;
     float: right;
 }
 
@@ -35,7 +35,7 @@
 #time {
     position: relative;
     float: right;
-    bottom: 1.5em;
+    bottom: 1em;
     font-size: 0.8em;
     color: #5A0F52;
 }
@@ -58,15 +58,15 @@
 
 .replies button {
     position: relative;
-    left: 6.7em;
-    bottom: 7.6em;
+    right: 4.5em;
+    bottom: 2.9em;
     float: right;
 }
 
 .replies a {
     position: relative;
-    left: 10.5em;
-    bottom: 5em;
+    left: 3.4em;
+    bottom: 2em;
     float: right;
 }
 
