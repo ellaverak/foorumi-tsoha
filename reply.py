@@ -1,11 +1,15 @@
 from db import db
 import users
+import textwrap
 from flask import session
 
 def leave_reply(content, thread_id):
     user_id = users.user_id()
     if user_id == 0:
         return False
+        
+    content = "\n".join(textwrap.wrap(content, width=78))
+    
     sql = "INSERT INTO replies (content, thread_id, user_id, sent_at) VALUES (:content, :thread_id, :user_id, NOW())"
     db.session.execute(sql, {"content":content, "thread_id":thread_id, "user_id":user_id})
     db.session.commit()
@@ -15,6 +19,9 @@ def edit_reply(content, reply_id):
     user_id = users.user_id()
     if user_id == 0:
         return False
+    
+    content = "\n".join(textwrap.wrap(content, width=78))
+    
     sql = "UPDATE replies SET content=:content WHERE id=:reply_id"
     db.session.execute(sql, {"content":content, "reply_id":reply_id})
     db.session.commit()
