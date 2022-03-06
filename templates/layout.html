@@ -3,74 +3,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
-  
+
   <div class="header">
-	<h1>Palsta</h1>
-	Tervetuloa palstalle!
+    <h1>Palsta</h1>
+    Tervetuloa palstalle!
   </div>
-  
+
   <nav>
-      <a href="/">Etusivu</a>
-	  {% block link %}{% endblock %}
+    <a href="/">Etusivu</a>
+
+    {% block link %}{% endblock %}
+    
   </nav>
-  
+
   {% block content %}{% endblock %}
-  
+
   <div id="container">
-  <div class="search">
-    <p>
-    <form action="/result" method="POST">
-    <label for="query">Hae viestiä:</label>
-    <input type="text" name="query">
-    <p>
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    <input id="button" type="submit" value="Hae">
-    </form>
-    <p>
+    <div class="search">
+      <p>
+      <form action="/result" method="POST">
+        <label for="query">Hae viestiä:</label>
+        <input type="text" name="query">
+        <p>
+          <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+          <input id="button" type="submit" value="Hae">
+      </form>
+      <p>
+    </div>
+
+    <div class="login">
+      {% if session.user_id %}
+      <text id="logged_in">
+        Olet kirjautunut nimellä
+        <text style="color:deeppink;">{{ session.username }}</text>
+      </text>
+      <p>
+        <a href="/logout">Kirjaudu ulos</a>
+      <p>
+        {% else %}
+      <form action="/login" method="POST">
+        <label for="username">Käyttäjätunnus:</label>
+        <input type="text" name="username" size="20">
+        <p>
+          <label for="password">Salasana:</label>
+          <input type="password" name="password" size="20">
+        <p>
+          <input id="button" type="submit" value="Kirjaudu sisään">
+      </form>
+      <p>
+        <a id="new_user" href="/register">Rekisteröidy</a>
+        {% endif %}
+    </div>
+
+    <div class="topics">
+      <text id="headline">
+        <p style="font-size:30px;">Alueet</p>
+      </text>
+      <p>
+        {% for topic in topic_list %}
+        <a id="name" style="color:pink;font-size:25px;" href="/topics{{ topic[1] }}">{{ topic[0] }}</a>
+        <br>
+        {% endfor %}
+      <p>
+      <p style="font-size:30px;">Palstan käyttäjät</p>
+      <select name="list" multiple="multiple">
+        {% for user in all_users %}
+        <option value="{{ user[0] }}">{{ user[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
   </div>
-  
-  <div class="login">
-    {% if session.user_id %}
-    <text id="logged_in">
-    Olet kirjautunut nimellä
-    <text style="color:deeppink;">{{ session.username }}</text>
-    </text>
-    <p>
-    <a href="/logout">Kirjaudu ulos</a>
-    <p>
-    {% else %}
-    <form action="/login" method="POST">
-    <label for="username">Käyttäjätunnus:</label>
-    <input type="text" name="username" size="20">
-    <p>
-    <label for="password">Salasana:</label>
-    <input type="password" name="password" size="20">
-    <p>
-    <input id="button" type="submit" value="Kirjaudu sisään">
-    </form>
-    <p>
-    <a id ="new_user" href="/register">Rekisteröidy</a>
-    {% endif %}
- </div>
- 
- <div class="topics">
-     <text id="headline">
-     <p style="font-size:30px;">Alueet</p>
-     </text>
-     <p>
-     {% for topic in topic_list %}
-     <a id="name" style="color:pink;font-size:25px;" href="/topics{{ topic[1] }}">{{ topic[0] }}</a>
-     <br>
-     {% endfor %}
-     <p>
-     <p style="font-size:30px;">Palstan käyttäjät</p>
-     <select name="list" multiple="multiple">
-     {% for user in all_users %}
-     <option value="{{ user[0] }}">{{ user[1] }}</option>
-     {% endfor %}
-     </select>
- </div>
-   
- </div>
 
 </body>

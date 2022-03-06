@@ -4,43 +4,49 @@
 
 {% extends "layout.html" %}
 {% block link %}
+
 {% if topic[0][5] == 1 %}
 / <a href="/secret_topics">Salaiset alueet</a>
 {% endif %}
 / {{ topic[0][0] }}
+
 {% endblock %}
 {% block content %}
+
 <div class="headline">
   {{ topic[0][0] }}
   <a href="/new{{ topic_id }}">Luo uusi ketju</a>
-  <hr></hr>
+  <hr>
+  </hr>
   <p>
-  <text>
-  Ketjut
-  </text>
+    <text>
+      Ketjut
+    </text>
 </div>
-  
+
 <div class="topic">
   {% if topic[0][1] != None %}
   {% for thread in topic %}
   <a href="/thread{{ thread[1] }}">{{ thread[2] }}</a>
   <text>
-  {{ thread[3].strftime("%Y-%m-%d %H:%M:%S") }}
+    {{ thread[3].strftime("%Y-%m-%d %H:%M:%S") }}
   </text>
-  <hr></hr>
+  <hr>
+  </hr>
   {% endfor %}
   {% endif %}
   <p>
-  {% if topic[0][5] == 1 %}
-  Alueen käyttäjät:
+    {% if topic[0][5] == 1 %}
+    Alueen käyttäjät:
   <p>
-  <select name="list" multiple="multiple">
-  {% for user in users %}
-  {% if session.user_id != user[0] %}
-  <option value="{{ user[0] }}">{{ user[0] }}</option>
-  {% endif %}
-  {% endfor %}
-  </select>
-  {% endif %}
+    <select name="list" multiple="multiple">
+      {% for user in users %}
+      {% if session.user_id != user[0] %}
+      <option value="{{ user[0] }}">{{ user[0] }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+    {% endif %}
 </div>
-  {% endblock %}
+
+{% endblock %}

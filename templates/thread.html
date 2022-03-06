@@ -2,46 +2,45 @@
 <link rel="stylesheet" href="static/css/thread.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% for reply in replies %}
 <script>
-function edit2(reply) {
-  var x = document.getElementById(reply);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+  function edit2(reply) {
+    var x = document.getElementById(reply);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
-}
 
-function edit1() {
-  var x = document.getElementById("div1");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+  function edit1() {
+    var x = document.getElementById("div1");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
-}
 
-function check(form) {
+  function check(form) {
     if (form.title.value.length == 0) {
-        alert("Kirjoita ketjulle otsikko");
-        return false;
+      alert("Kirjoita ketjulle otsikko");
+      return false;
     }
     if (form.op_content.value.length == 0) {
-        alert("Kirjoita aloitusviesti");
-        return false;
+      alert("Kirjoita aloitusviesti");
+      return false;
     }
     if (form.content.value.length == 0) {
-        alert("Kirjoita viesti");
-        return false;
+      alert("Kirjoita viesti");
+      return false;
     }
     return true;
-}
+  }
 </script>
-{% endfor %}
 
 {% extends "layout.html" %}
 {% block link %}
+
 {% if topic_info[0][1] == 1 %}
 / <a href="/secret_topics">Salaiset alueet</a>
 {% endif %}
@@ -56,7 +55,7 @@ function check(form) {
 
 <div class="opening">
   <text id="user">
-  {{ thread[0][4] }}
+    {{ thread[0][4] }}
   </text>
   <br>
   {% if session.user_id == thread[0][3] %}
@@ -64,23 +63,23 @@ function check(form) {
   <a href="/delete_thread{{ thread[0][0] }}">Poista ketju</a>
   {% endif %}
   <p>
-  
-  {{ thread[0][2] }}
+
+    {{ thread[0][2] }}
   <p>
 
   <div id="div1" style="display: none;">
     <form action="/edit_thread" method="POST" onsubmit="return check(this)">
-    Otsikko: 
-    <br>
-    <input id="op_headline" type="text" name="title" value="{{ thread[0][1] }}" maxlength="45">
-    <p>
-    Aloitusviesti:
-    <br> 
-    <textarea name="op_content" maxlength="1000" rows="4" cols="40">{{ thread[0][2] }}</textarea>
-    <p>
-    <input type="submit" value="Hyväksy">
-    <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+      Otsikko:
+      <br>
+      <input id="op_headline" type="text" name="title" value="{{ thread[0][1] }}" maxlength="45">
+      <p>
+        Aloitusviesti:
+        <br>
+        <textarea name="op_content" maxlength="1000" rows="4" cols="40">{{ thread[0][2] }}</textarea>
+      <p>
+        <input type="submit" value="Hyväksy">
+        <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
   </div>
 
@@ -90,34 +89,35 @@ function check(form) {
   {% if replies[0][0] != None %}
   {% for reply in replies %}
   <text id="user">
-  {{reply[3]}} 
+    {{reply[3]}}
   </text>
   <br>
   {% if session.user_id == reply[2] %}
   <button onclick="edit2({{ reply[0] }})">Muokkaa</button>
   <a href="/delete_reply{{ reply[0]}}">Poista</a>
   {% endif %}
-  
+
   <p>
-  {{reply[1]}}
+    {{reply[1]}}
   <p>
-  <text id="time">
-  {{reply[4].strftime("%Y-%m-%d %H:%M:%S") }}
-  </text>
+    <text id="time">
+      {{reply[4].strftime("%Y-%m-%d %H:%M:%S") }}
+    </text>
 
   <div id="{{ reply[0] }}" style="display: none;">
     <form action="/edit_reply" method="POST" onsubmit="return check(this)">
-    Muokkaa viestiä: <br>
-    <textarea name="content" maxlength="1000" rows="4" cols="40">{{ reply[1] }}</textarea>
-    <p>
-    <input type="submit" value="Hyväksy">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    <input type="hidden" name="reply_id" value="{{ reply[0] }}">
-    <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+      Muokkaa viestiä: <br>
+      <textarea name="content" maxlength="1000" rows="4" cols="40">{{ reply[1] }}</textarea>
+      <p>
+        <input type="submit" value="Hyväksy">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <input type="hidden" name="reply_id" value="{{ reply[0] }}">
+        <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
     </form>
   </div>
-  
-  <hr></hr>
+
+  <hr>
+  </hr>
   {% endfor %}
   {% endif %}
 </div>
@@ -126,12 +126,13 @@ function check(form) {
 <div class="new_reply">
   <p>
   <form action="/reply" method="POST" onsubmit="return check(this)">
-  Viesti: <br>
-  <textarea name="content" maxlength="1000" rows="7" cols="60" placeholder="Jätä vastaus!"></textarea>
-  <p>
-  <input id="accept" type="submit" value="Lähetä">
-  <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
-  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    Viesti: <br>
+    <textarea name="content" maxlength="1000" rows="7" cols="60" placeholder="Jätä vastaus!"></textarea>
+    <p>
+      <input id="accept" type="submit" value="Lähetä">
+      <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
+      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   </form>
 </div>
+
 {% endblock %}

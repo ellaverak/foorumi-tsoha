@@ -4,36 +4,41 @@
 
 {% extends "layout.html" %}
 {% block link %}
+
 / Hakutulokset
+
 {% endblock %}
 {% block content %}
+
 <div class="headline">
   Hakutulokset
-  </div>
+</div>
 <div class="result">
   <p>
-  {% if replies == [] %}
-  Ei tuloksia
-  {% endif %}
+    {% if replies == [] %}
+    Ei tuloksia
+    {% endif %}
   <p>
-  {% for reply in replies %}
-  {% if reply[5] == 0 %}
-  {{ reply[1] }}
+    {% for reply in replies %}
+    {% if reply[5] == 0 %}
+    {{ reply[1] }}
   <p>
-  lähettäjä: 
-  <text id="user">
-  {{ reply[4] }}
-  </text>
+    lähettäjä:
+    <text id="user">
+      {{ reply[4] }}
+    </text>
   <p>
-  Alueella: {{ reply[3] }}
+    Alueella: {{ reply[3] }}
   <p>
-  Ketjussa: {{ reply[2] }} 
-  <a href="/thread{{ reply[6] }}">Mene ketjuun</a>
+    Ketjussa: {{ reply[2] }}
+    <a href="/thread{{ reply[6] }}">Mene ketjuun</a>
   <p>
-  <hr></hr>
-  {% else %}
-  Vastauksia ei löytynyt
-  {% endif %}
-  {% endfor %}
-  </div>
+    <hr>
+    </hr>
+    {% else %}
+    Vastauksia ei löytynyt
+    {% endif %}
+    {% endfor %}
+</div>
+
 {% endblock %}

@@ -3,41 +3,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script>
-function check(form) {
-    if (form.username.value.length == 0) {
-        alert("Kirjoita käyttäjänimi");
-        return false;
+    function check(form) {
+        if (form.username.value.length == 0) {
+            alert("Kirjoita käyttäjänimi");
+            return false;
+        }
+        if (form.password1.value.length < 4) {
+            alert("Salasanan on oltava vähintään neljän merkin pituinen");
+            return false;
+        }
+        if (form.password1.value != form.password2.value) {
+            alert("Salasanat eivät täsmää");
+            return false;
+        }
+        return true;
     }
-    if (form.password1.value.length < 4) {
-        alert("Salasanan on oltava vähintään neljän merkin pituinen");
-        return false;
-    }
-    if (form.password1.value != form.password2.value) {
-        alert("Salasanat eivät täsmää");
-        return false;
-    }
-    return true;
-}
 </script>
 
 {% extends "layout.html" %}
 {% block link %}
+
 / Rekisteröidy
+
 {% endblock %}
 {% block content %}
+
 <div class="register">
-<text>
-Rekisteröinti
-</text>
-<p>
-<form action="/register" method="POST" onsubmit="return check(this)">
-Uusi käyttäjä: <br><input type="text" name="username" maxlength="20">
-<p>
-Salasana: <br><input type="password" name="password1" maxlength="40">
-<p>
-Salasana uudestaan: <br><input type="password" name="password2" maxlength="40">
-<p>
-<input id="button" type="submit" value="Luo tunnus">
-</form>
+    <text>
+        Rekisteröinti
+    </text>
+    <p>
+    <form action="/register" method="POST" onsubmit="return check(this)">
+        Uusi käyttäjä: <br><input type="text" name="username" maxlength="20">
+        <p>
+            Salasana: <br><input type="password" name="password1" maxlength="40">
+        <p>
+            Salasana uudestaan: <br><input type="password" name="password2" maxlength="40">
+        <p>
+            <input id="button" type="submit" value="Luo tunnus">
+    </form>
 </div>
+
 {% endblock %}
