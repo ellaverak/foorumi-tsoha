@@ -35,7 +35,7 @@ def register():
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("error.html", message="Rekisteröinti ei onnistunut")
+            return render_template("error.html", message="Käyttäjänimi on jo käytössä")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
