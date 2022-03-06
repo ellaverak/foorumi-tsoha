@@ -1,10 +1,10 @@
 from os import abort
-from app import app
-from flask import render_template, request, redirect, url_for, session
+import thread
+from flask import render_template, request, redirect, session
 import users
 import topics
-import thread
 import reply
+from app import app
 
 
 @app.context_processor
@@ -39,7 +39,8 @@ def register():
         if len(username) == 0:
             return render_template("error.html", message="Kirjoita käyttäjänimi")
         if len(password1) < 4 or len(password2) < 4:
-            return render_template("error.html", message="Salasanan on oltava vähintään neljän merkin pituinen")
+            return render_template("error.html",
+                                   message="Salasanan on oltava vähintään neljän merkin pituinen")
         if users.register(username, password1):
             return redirect("/")
         else:
@@ -84,10 +85,12 @@ def show_thread(id):
     topic_info = topics.get_info_thread(id)
     print(topic_info)
     if topic_info[0][1] == 0:
-        return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
+        return render_template("thread.html", thread=thread_, replies=replies_,
+                               thread_id=id, topic_info=topic_info)
     else:
         if users.access(topic_info[0][2]):
-            return render_template("thread.html", thread=thread_, replies=replies_, thread_id=id, topic_info=topic_info)
+            return render_template("thread.html", thread=thread_, replies=replies_,
+                                   thread_id=id, topic_info=topic_info)
         else:
             return render_template("error.html", message="Sinulla ei ole pääsyä ketjuun")
 
@@ -100,6 +103,9 @@ def new_thread(id):
 
 @app.route("/create_new", methods=["POST"])
 def create_new_thread():
+    if session.get("user_id", 0) == 0:
+        return render_template("error.html",
+                               message="Vain kirjautunut käyttäjä voi luoda uuden ketjun")
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     title = request.form["title"]
@@ -118,6 +124,9 @@ def create_new_thread():
 
 @app.route("/reply", methods=["POST"])
 def reply_to():
+    if session.get("user_id", 0) == 0:
+        return render_template("error.html",
+                               message="Vain kirjautunut käyttäjä voi lähettää viestin")
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     content = request.form["content"]
@@ -195,9 +204,10 @@ def delete_topic():
     if len(topic_name) == 0:
         return render_template("error.html", message="Kirjoita alueen nimi")
     if topics.delete_topic(topic_name):
-        return redirect("/")
+        return redirect(request.referrer)
     else:
-        return render_template("error.html", message="Alueen poisto ei onnistunut. Syy: Virhe tai perusalueen poistokäsky.")
+        return render_template("error.html", message="Alueen poisto ei onnistunut. \
+        Syy: Virhe tai perusalueen poistokäsky.")
 
 
 @app.route("/create_topic", methods=["POST"])
@@ -236,11 +246,17 @@ def create_secret():
         return render_template("error.html", message="Salaisen alueen luonti ei onnistunut")
 
 
-@app.route("/result", methods=["POST"])
+@app.route("/result", methods=["POST", "GET"])
 def result():
+    if session.get("user_id", 0) == 0:
+        return render_template("error.html",
+                               message="Vain kirjautunut käyttäjä voi käyttää hakutoimintoa")
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     query = request.form["query"]
+    if query == "":
+        return render_template("error.html",
+                               message="Tyhjä hakukenttä")
     replies = reply.search(query)
     return render_template("result.html", replies=replies)
 
