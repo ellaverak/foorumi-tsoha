@@ -13,3 +13,14 @@
     font-size: 1em;
     background: mistyrose;
 }
+
+.new_thread #headline {
+    width: 30em;
+    font-size: 1em;
+}
+
+
+.new_thread textarea {
+    width: 52em;
+    font-size: 1em;
+}

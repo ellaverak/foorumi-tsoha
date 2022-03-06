@@ -27,6 +27,16 @@
     float: right;
 }
 
+.opening textarea {
+    width: 34em;
+    font-size: 1em;
+}
+
+.opening #op_headline {
+    font-size: 1em;
+    width: 25em;
+}
+
 #user {
     color: deeppink;
     font-size: 1.2em;
@@ -70,6 +80,11 @@
     float: right;
 }
 
+.replies textarea {
+    width: 34em;
+    font-size: 1em;
+}
+
 .new_reply {
     width: 40em;
     padding: 0.5em;
@@ -83,7 +98,11 @@
 }
 
 .new_reply #accept {
-    font-size: 0.8em;
+    font-size: 0.9em;
     background: mistyrose;
 }
 
+.new_reply textarea {
+    width: 52em;
+    font-size: 1em;
+}
