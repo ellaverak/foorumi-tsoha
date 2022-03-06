@@ -13,7 +13,7 @@
     <a href="/">Etusivu</a>
 
     {% block link %}{% endblock %}
-    
+
   </nav>
 
   {% block content %}{% endblock %}
@@ -23,7 +23,7 @@
       <p>
       <form action="/result" method="POST">
         <label for="query">Hae viestiä:</label>
-        <input type="text" name="query">
+        <input type="text" name="query" maxlength="100">
         <p>
           <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
           <input id="button" type="submit" value="Hae">

@@ -3,7 +3,9 @@
 {% extends "layout.html" %}
 {% block link %}
 
+{% if session.user_id %}
 / <a href="#" onclick="history.go(-1)">Palaa edelliselle sivulle</a>
+{% endif %}
 / Virhe
 
 {% endblock %}

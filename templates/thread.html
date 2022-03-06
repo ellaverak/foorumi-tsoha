@@ -77,7 +77,7 @@
         <br>
         <textarea name="op_content" maxlength="1000" rows="4" cols="40">{{ thread[0][2] }}</textarea>
       <p>
-        <input type="submit" value="Hyväksy">
+        <input id="accept" type="submit" value="Hyväksy">
         <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
@@ -109,7 +109,7 @@
       Muokkaa viestiä: <br>
       <textarea name="content" maxlength="1000" rows="4" cols="40">{{ reply[1] }}</textarea>
       <p>
-        <input type="submit" value="Hyväksy">
+        <input id="accept" type="submit" value="Hyväksy">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <input type="hidden" name="reply_id" value="{{ reply[0] }}">
         <input type="hidden" name="thread_id" value="{{ thread[0][0] }}">

@@ -85,15 +85,6 @@
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <input type="submit" value="Hyväksy">
     </form>
-    Lista käyttäjistä:
-    <br>
-    <select name="list" multiple="multiple">
-      {% for user in users %}
-      {% if session.user_id != user[0] %}
-      <option value="{{ user[0] }}">{{ user[1] }}</option>
-      {% endif %}
-      {% endfor %}
-    </select>
   </div>
 
   <p>
