@@ -87,3 +87,4 @@ Current state:
 - Users can no longer access secret areas through the address bar if they aren't allowed into the area.
 - CSRF-checks added. Security assets are now done.
 - Code is now properly formatted.
+- Fixed one final issue with registering. For some reason sql wouldn't raise an error when a username was already in use. Instead it created a transaction issue and the whole app chrashed. The fix isn't the best possible one, but it stops the app from chrashing.
