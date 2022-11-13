@@ -5,8 +5,6 @@ heroku address: https://foorumi-tsoha22.herokuapp.com/
 
 !TESTING INSTRUCTIONS!
 
-!ATTENTION: The security aspects of the app are unfinished. They will be improved in the final version.!
-
 TEST ADMIN:
 - username: admin
 - password: admin
