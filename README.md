@@ -2,6 +2,7 @@
 
 Tkt-tsoha project
 heroku address: https://foorumi-tsoha22.herokuapp.com/
+fly.io address: https://palsta.fly.dev/
 
 !TESTING INSTRUCTIONS!
 
